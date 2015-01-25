@@ -147,3 +147,5 @@ en:
       grid: "Grid"
       blog: "Blog"
 
+  users:
+    email: "Email"
