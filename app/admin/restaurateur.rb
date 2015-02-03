@@ -13,6 +13,16 @@ ActiveAdmin.register Restaurateur do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+controller do
+
+  def create
+    super
+    @restaurateur = Restaurateur.new(:nom=>params[:restaurateur][:nom],:courriel=>params[:restaurateur][:courriel])
+    @restaurateur.save
+#    redirect_to admin_restaurateur_path(:id=> @restaurateur.id)
+  end
+
+end
 
    index do
      selectable_column
@@ -32,6 +42,7 @@ ActiveAdmin.register Restaurateur do
      end
 
    end
+
 
    form do |f|
      f.inputs "Restaurateur" do
