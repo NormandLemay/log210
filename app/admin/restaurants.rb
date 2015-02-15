@@ -33,7 +33,7 @@ ActiveAdmin.register Restaurant do
 
       column :restaurateur_id do |restaurants|
         if restaurants.restaurateur.nil?
-          flash[:warning] = "Vous n'avez pas sélectionné de restaurateur"
+          flash[:warning] = "Aucun restaurateur sélectionné"
         else
           restaurants.restaurateur.nom
       end
