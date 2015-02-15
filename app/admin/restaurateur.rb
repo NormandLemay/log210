@@ -17,8 +17,8 @@ controller do
 
   def create
     super
-    @restaurateur = Restaurateur.new(:nom=>params[:restaurateur][:nom],:courriel=>params[:restaurateur][:courriel])
-    @restaurateur.save
+   # @restaurateur = Restaurateur.new(:nom=>params[:restaurateur][:nom],:courriel=>params[:restaurateur][:courriel])
+  #  @restaurateur.save
 #    redirect_to admin_restaurateur_path(:id=> @restaurateur.id)
   end
 

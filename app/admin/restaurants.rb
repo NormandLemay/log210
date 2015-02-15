@@ -18,8 +18,8 @@ ActiveAdmin.register Restaurant do
 
     def create
       super
-      @restaurants = Restaurant.new(:nom=>params[:restaurants][:nom],:restaurateur_id=>params[:restaurants][:restaurateur_id])
-      @restaurants.save
+    #  @restaurants = Restaurant.new(:nom=>params[:restaurants][:nom],:restaurateur_id=>params[:restaurants][:restaurateur_id])
+    #  @restaurants.save
 #    redirect_to admin_restaurant_path(:id=> @restaurant.id)
     end
   end
@@ -29,7 +29,16 @@ ActiveAdmin.register Restaurant do
       selectable_column
       id_column
       column :nom
-      column :restaurateur_id
+
+
+      column :restaurateur_id do |restaurants|
+        if restaurants.restaurateur.nil?
+          flash[:warning] = "Vous n'avez pas sélectionné de restaurateur"
+        else
+          restaurants.restaurateur.nom
+      end
+
+      end
       actions
   end
 
@@ -52,5 +61,6 @@ ActiveAdmin.register Restaurant do
     end
     f.actions
   end
+
 
 end
