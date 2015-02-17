@@ -17,10 +17,10 @@ ActiveAdmin.register Restaurant do
   controller do
 
     def create
-      super
-    #  @restaurants = Restaurant.new(:nom=>params[:restaurants][:nom],:restaurateur_id=>params[:restaurants][:restaurateur_id])
-    #  @restaurants.save
-#    redirect_to admin_restaurant_path(:id=> @restaurant.id)
+      @restaurant = Restaurant.new(:nom=>params[:restaurant][:nom],:restaurateur_id=>params[:restaurant][:restaurateur_id])
+      @restaurant.save
+      flash[:warning] = "Aucun restaurateur sélectionné" unless @restaurant.restaurateur_id.present?
+      redirect_to admin_restaurant_path(:id=> @restaurant.id)
     end
   end
 
@@ -31,11 +31,11 @@ ActiveAdmin.register Restaurant do
       column :nom
 
 
-      column :restaurateur_id do |restaurants|
-        if restaurants.restaurateur.nil?
-          flash[:warning] = "Aucun restaurateur sélectionné"
+      column :restaurateur_id do |restaurant|
+        if restaurant.restaurateur_id.present?
+          restaurant.restaurateur.nom
         else
-          restaurants.restaurateur.nom
+          "Aucun restaurateur sélectionné"
       end
 
       end
