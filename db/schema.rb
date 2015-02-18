@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 20150203005538) do
   add_index "entrepreneurs", ["email"], name: "index_entrepreneurs_on_email", unique: true
   add_index "entrepreneurs", ["reset_password_token"], name: "index_entrepreneurs_on_reset_password_token", unique: true
 
+  create_table "menu_items", force: true do |t|
+    t.string   "nom"
+    t.string   "description"
+    t.float    "prix"
+    t.integer  "menu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menus", force: true do |t|
+    t.string   "nom"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "restaurants", force: true do |t|
     t.string   "nom"
     t.integer  "restaurateur_id"

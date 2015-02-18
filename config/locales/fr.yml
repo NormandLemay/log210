@@ -19,6 +19,19 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 fr:
+  activerecord:
+    errors:
+      models:
+        menu:
+          attributes:
+            nom:
+              blank: "Le nom ne peut être vide"
+        menu_item:
+          attributes:
+            nom:
+              blank: "Le nom ne peut être vide"
+            prix:
+              blank: "Le prix ne peut être vide"
   active_admin:
     dashboard: "Tableau de bord"
     dashboard_welcome:

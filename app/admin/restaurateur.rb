@@ -4,7 +4,7 @@ ActiveAdmin.register Restaurateur do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :nom,:courriel, restaurants_attributes: [:restaurateur_id]
+  permit_params :nom,:courriel, restaurants_attributes: [:id,:restaurateur_id]
   #
   # or
   #
@@ -27,7 +27,7 @@ ActiveAdmin.register Restaurateur do
           restaurant.save
         end
       else
-        flash[:warning] = "Vous n'avez pas choisie de restaurant"
+        flash[:warning] = "Vous n'avez pas choisi de restaurant"
       end
 
        redirect_to admin_restaurateur_path(:id=> @restaurateur.id)
