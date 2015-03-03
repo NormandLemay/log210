@@ -12,7 +12,7 @@ ActiveAdmin.register Menu do
           if params[:menu][:menu_items_attributes].present?
           params[:menu][:menu_items_attributes].each do #TODO a revoir
             nom = params[:menu][:menu_items_attributes]["#{i}"]["nom"]
-            exit if nom.blank?
+            next if nom.blank?
             description = params[:menu][:menu_items_attributes]["#{i}"]["description"]
             warning << "#{nom}, " if description.blank?
             i+=1
@@ -20,8 +20,8 @@ ActiveAdmin.register Menu do
 
           puts warning
           flash[:warning] = warning.join[0...-2] if warning.present?
-          super
         end
+          super
     #    end
     #  end
     end
