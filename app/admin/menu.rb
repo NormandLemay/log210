@@ -1,27 +1,29 @@
 ActiveAdmin.register Menu do
 
-
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
   permit_params :nom, :restaurant_id,  menu_items_attributes: [:id, :nom, :description, :prix, :restaurant_id, :_destroy]
 
   controller do
 
     def create
-      i = 0
-      warning =["Vous n'avez pas mit de description pour le(s) plat(s) : "]
-      params[:menu][:menu_items_attributes].each do 
-        nom = params[:menu][:menu_items_attributes]["#{i}"]["nom"]
-        exit if nom.blank?
-        description = params[:menu][:menu_items_attributes]["#{i}"]["description"]
-        warning << "#{nom}, " if description.blank?
-        i+=1
-      end
-      puts warning
-      flash[:warning] = warning.join[0...-2] if warning.present?
-      super
+     # flash[:notice] = Benchmark.bm(7) do |x|
+     #   x.report("create menu") do
+          i = 0
+          warning =["Vous n'avez pas mit de description pour le(s) plat(s) : "]
+          if params[:menu][:menu_items_attributes].present?
+          params[:menu][:menu_items_attributes].each do #TODO a revoir
+            nom = params[:menu][:menu_items_attributes]["#{i}"]["nom"]
+            exit if nom.blank?
+            description = params[:menu][:menu_items_attributes]["#{i}"]["description"]
+            warning << "#{nom}, " if description.blank?
+            i+=1
+          end
+
+          puts warning
+          flash[:warning] = warning.join[0...-2] if warning.present?
+          super
+        end
+    #    end
+    #  end
     end
 
     def update
@@ -48,7 +50,7 @@ ActiveAdmin.register Menu do
       row "item(s)" do
         liste_item = []
         menu.menu_items.each do |item|
-          liste_item << item.nom
+          liste_item << "#{item.nom}, #{item.description}, #{item.prix}"
         end
         liste_item.join('<br />').html_safe
       end

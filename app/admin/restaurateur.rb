@@ -21,7 +21,6 @@ ActiveAdmin.register Restaurateur do
       if params[:restaurateur][:restaurants_attributes].present?
         params["restaurateur"]["restaurants_attributes"].values.each do |resto| 
           resto_id = resto.values_at("id")[0]
-          puts resto_id
           restaurant = Restaurant.find(resto_id)
           restaurant.restaurateur_id = @restaurateur.id
           restaurant.save

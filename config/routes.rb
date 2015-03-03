@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :restaurants
 
   devise_for :entrepreneurs, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
