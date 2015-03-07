@@ -4,6 +4,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :nom
       t.string :prenom
       t.date :date_naissance
+      t.string :telephone
 
       t.timestamps
     end

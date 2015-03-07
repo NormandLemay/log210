@@ -19,6 +19,11 @@
     <%= f.label :prenom %><br>
     <%= f.text_field :prenom %>
   </div>
+
+  <div class="field">
+    <%= f.label :telephone %><br>
+    <%= f.telephone_field :telephone %>
+  </div>
   <div class="field">
     <%= f.label :date_naissance %><br>
     <%= f.date_select :date_naissance, start_year: 1950 %>
