@@ -58,9 +58,10 @@ ActiveAdmin.register Menu do
   end
 
   form do |f|
+    restaurateur = Restaurateur.first
     f.inputs "Menu" do
       f.input :nom
-      f.input :restaurant_id, :as => :select, :collection => Restaurant.all.map{|res| [res.nom, res.id]}
+      f.input :restaurant_id, :as => :select, :collection => restaurateur.restaurants.map{|res| [res.nom, res.id]}
       f.inputs do
         f.has_many :menu_items, allow_destroy: true do |t|
           t.input :nom

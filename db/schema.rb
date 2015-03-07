@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218031047) do
+ActiveRecord::Schema.define(version: 20150306015858) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,6 +27,34 @@ ActiveRecord::Schema.define(version: 20150218031047) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "addresses", force: true do |t|
+    t.string   "rue"
+    t.integer  "no_civic"
+    t.string   "ville"
+    t.string   "pays"
+    t.string   "code_postal"
+    t.string   "province"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", force: true do |t|
+    t.string   "nom"
+    t.string   "prenom"
+    t.date     "date_naissance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comptes", force: true do |t|
+    t.string   "courriel"
+    t.string   "mot_de_passe"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "entrepreneurs", force: true do |t|
     t.string   "email",                  default: "", null: false

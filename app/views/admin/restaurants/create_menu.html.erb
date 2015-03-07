@@ -1,0 +1,7 @@
+  <%= active_admin_form_for @restaurant, :url => create_menu_admin_restaurant_path do |f| %>
+    <%= f.inputs :nom %>
+    <%= f.semantic_fields_for :menu_items do |menu_item| %>
+      <%= menu_item.inputs :nom, :description, :prix %>
+    <% end %>
+    <%= f.actions %>
+  <% end %>

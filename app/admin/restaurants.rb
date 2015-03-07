@@ -24,6 +24,15 @@ ActiveAdmin.register Restaurant do
     end
   end
 
+  action_item(:only => :show) do
+    link_to "Créer un menu", create_menu_admin_restaurant_path
+  end
+
+ # @params :restaurant_id
+  member_action :create_menu, :title => "Créer un menu", :method => [:get, :post] do
+    @restaurant = Restaurant.find(params[:id])
+  end
+
 
   index do
       selectable_column

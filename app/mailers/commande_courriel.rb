@@ -4,7 +4,6 @@ class CommandeCourriel < ActionMailer::Base
 
   def confirmation_commande(compte)
     @compte = compte
-    debugger
     mail(to: @compte.email, subject: 'Sample Email').deliver!
   end
 

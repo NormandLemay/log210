@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :clients
+
   devise_for :entrepreneurs, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
