@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150306015858) do
     t.string   "nom"
     t.string   "prenom"
     t.date     "date_naissance"
+    t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

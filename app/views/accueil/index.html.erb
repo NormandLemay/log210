@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "filename" %>
+
+<html>
+<head>
+  <title>LOG210 Equipe 9</title>
+</head>
+<body>
+<div id="nav">
+  <p class="title">"insérer nom ici"</p>
+  <ul id="navigation">
+    <li id="boutonInscription"><%= content_tag(:button, "Inscription", :type => :submit) %></li>
+    <li class="boutonLabel">Nouveau client?</li>
+    <li id="boutonConnexion"><%= content_tag(:button, "Connexion", :type => :submit) %></li>
+    <li class="boutonLabel">Déjà inscrit?</li>
+  </ul>
+</div>
+
+<div id="bodycommande">
+  <div id="commande">
+    <ul id="ulcommande">
+      <li id="boutonCommande"><%= content_tag(:button, "Commander", :type => :submit) %></li>
+      <li class="boutonLabel">Prêt à commander?</li>
+      <li>
+        <select>
+          <% @restaurant.each do |r| %>
+              <option>
+                <%= r.nom %>
+              </option>
+          <% end %>
+        </select>
+      </li>
+      <li class="boutonLabel"> Restaurants participants:</li>
+    </ul>
+  </div>
+  <p><%= image_tag("logo.png", :alt => "logo", height: '250', width: '250') %></p>
+
+  <div class="menu">
+    <!--  <p>
+    test
+    Ne fonctionne pas (nil.each) Il faut déclarrer @menu = menu.all dans le controlleur de menu
+      <% #@menu.each do |e| %>
+          <%# e.nom %>
+      <%# end %>
+    </p> -->
+  </div>
+</div>
+
+</body>
+</html>
