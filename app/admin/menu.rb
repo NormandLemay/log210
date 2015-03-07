@@ -29,7 +29,6 @@ ActiveAdmin.register Menu do
     def update
       super
     end
-
   end
 
   index do
