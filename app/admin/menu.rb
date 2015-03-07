@@ -8,18 +8,22 @@ ActiveAdmin.register Menu do
      # flash[:notice] = Benchmark.bm(7) do |x|
      #   x.report("create menu") do
           i = 0
+          faire_afficher_warning = false
           warning =["Vous n'avez pas mit de description pour le(s) plat(s) : "]
           if params[:menu][:menu_items_attributes].present?
           params[:menu][:menu_items_attributes].each do #TODO a revoir
             nom = params[:menu][:menu_items_attributes]["#{i}"]["nom"]
             next if nom.blank?
             description = params[:menu][:menu_items_attributes]["#{i}"]["description"]
-            warning << "#{nom}, " if description.blank?
+            if description.blank?
+              warning << "#{nom}, "
+              faire_afficher_warning = true
+            end
             i+=1
           end
 
           puts warning
-          flash[:warning] = warning.join[0...-2] if warning.present?
+          flash[:warning] = warning.join[0...-2] if faire_afficher_warning
         end
           super
     #    end
