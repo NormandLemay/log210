@@ -1,5 +1,5 @@
 class ClientsController < InheritedResources::Base
-
+	before_filter :authentification, :except => [:new, :create]
   def new
   	@client = Client.new
   	@client.build_compte
@@ -17,7 +17,6 @@ class ClientsController < InheritedResources::Base
 	    render :action => 'new'
 	  end
   end
-
 
 	def create
 	 #super
