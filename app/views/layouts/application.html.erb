@@ -4,10 +4,25 @@
   <title>Log210</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div id="nav">
+  <p class="title">Bienvenu <%= "#{@compte_client.prenom} #{@compte_client.nom}," if @compte_client.present? %></p>
+  <ul id="navigation">
+  <% if @compte_client.blank? %>
+    <li id="boutonInscription"><%= button_to "Nouveau client?", new_client_path, :method=>:get %></li>
+    <li class="boutonLabel">Nouveau client?</li>
+    <li id="boutonConnexion"><%= content_tag(:button, "Connexion", :type => :submit) %></li>
+    <li class="boutonLabel">Déjà inscrit?</li>
+  <% else %>
+     <li id="boutonInscription"><%= button_to "Modifier compte", edit_client_path(@compte_client.id), :method=>:get %></li>
+    <li id="boutonConnexion"><%= button_to "Deconnexion", accueil_deconnexion_path %></li>
+  <% end %>
+  </ul>
+</div>
 <%= yield %>
 
 </body>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'accueil/index'
+  resources :accueil 
+
+  post "/accueil/deconnexion" => "accueil#deconnexion"
+  post "/accueil/connexion" => "accueil#connexion"
 
   resources :clients
 

@@ -1,34 +1,16 @@
-<%= stylesheet_link_tag "filename" %>
 
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="UTF-8">
-      <title>LOG210 Equipe 9</title>
-      <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" %>
-
-      <script type="text/javascript">
-          $(document).ready(function restaurantChoisi() {
-              <% @restaurant.each do |restaurant| %>
-              if ("<%= restaurant.nom %>" == $("#restaurant_id option:selected").val()) {
-                  alert("bob");
-                  document.getElementById("menu_id").innerHTML = "<%=displayMenuItems(restaurant)%>"
-              }
-              <% end %>
-          });
-      </script>
-
-    </head>
-    <body>
-        <div id="nav">
-          <p class="title">"insérer nom ici"</p>
-          <ul id="navigation">
-            <li id="boutonInscription"><%= content_tag(:button, "Inscription", :type => :submit) %></li>
-            <li class="boutonLabel">Nouveau client?</li>
-            <li id="boutonConnexion"><%= content_tag(:button, "Connexion", :type => :submit) %></li>
-            <li class="boutonLabel">Déjà inscrit?</li>
-          </ul>
-        </div>
+<div id="bodycommande">
+<% if @compte_client.blank? %>
+  <div style="clear:both"></div>
+    <div id="authentification" style="z-index=9999">
+      <form action=<%= accueil_connexion_path %> method="post" id="authentification" >
+        Courriel: <input type="text" name="courriel"><br />
+        Mot de passe: <input type="password" name="mot_de_passe"><br />
+        <input type="submit">
+      </form>
+    </div>
+<% end %>
+  <p><%= image_tag("logo.png", :alt => "logo", height: '250', width: '250') %></p>
 
         <div id="bodycommande">
           <div id="commande">
@@ -55,5 +37,13 @@
           </div>
 
         </div>
-    </body>
-</html>
+  <script type="text/javascript">
+    function restaurantChoisi() {
+      <% @restaurant.each do |restaurant| %>
+      if ("<%= restaurant.nom %>" == $("#restaurant_id option:selected").val()) {
+          document.getElementById("menu_id").innerHTML = '<%=displayMenuItems(restaurant)%>';
+      }
+      <% end %>
+    };
+      
+  </script>
