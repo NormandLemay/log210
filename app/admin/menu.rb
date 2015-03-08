@@ -75,4 +75,6 @@ ActiveAdmin.register Menu do
     end
     f.actions
   end
+
+
 end
