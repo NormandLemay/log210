@@ -7,7 +7,7 @@ class OnlyEntrepreneursAuthorization < ActiveAdmin::AuthorizationAdapter
 
       else
         if( defined? subject.name )
-          subject.name == "Dashboard" || subject.name == "Entrepreneur" || subject.name == "Restaurant" || subject.name == "Menu" || subject.name == "Restaurateur"
+          ["Dashboard", "Entrepreneur", "Restaurant", "Menu", "Restaurateur"].include?(subject.name)
         else
           true
         end
