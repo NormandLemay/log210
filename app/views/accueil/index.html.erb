@@ -1,49 +1,49 @@
 
-<div id="bodycommande">
-<% if @compte_client.blank? %>
-  <div style="clear:both"></div>
-    <div id="authentification" style="z-index=9999">
-      <form action=<%= accueil_connexion_path %> method="post" id="authentification" >
-        Courriel: <input type="text" name="courriel"><br />
-        Mot de passe: <input type="password" name="mot_de_passe"><br />
-        <input type="submit">
-      </form>
-    </div>
-<% end %>
-  <p><%= image_tag("logo.png", :alt => "logo", height: '250', width: '250') %></p>
 
-        <div id="bodycommande">
-          <div id="commande">
-            <ul id="ulcommande">
-              <li id="boutonCommande"><%= content_tag(:button, "Commander", :type => :submit) %></li>
-              <li class="boutonLabel">Prêt à commander?</li>
-              <li class="boutonLabel">
-                <select id="restaurant_id" onChange="restaurantChoisi()">
-                  <option value=0></option>
-                  <% @restaurant.each do |r| %>
-                      <option>
-                        <%= r.nom %>
-                      </option>
-                  <% end %>
-                </select>
-              </li>
-              <li class="boutonLabel"> Restaurants participants:</li>
-            </ul>
+  <div id="bodycommande">
+    <p><%= image_tag("logo.png", :alt => "logo", height: '250', width: '250') %></p>
+    <div id="bodyConnexion">
+      <% if @compte_client.blank? %>
+          <div style="clear:both"></div>
+          <div id="authentification" style="z-index=9999">
+            <form action=<%= accueil_connexion_path %> method="post" id="authentification">
+              Courriel: <input type="text" name="courriel"><br/>
+              Mot de passe: <input type="password" name="mot_de_passe"><br/>
+              <input type="submit">
+            </form>
           </div>
-          <p><%= image_tag("logo.png", :alt => "logo", height: '250', width: '250') %></p>
-
-          <div class="menu" id="menu_id">
-            <p> Section menu </p>
-          </div>
-
-        </div>
-  <script type="text/javascript">
-    function restaurantChoisi() {
-      <% @restaurant.each do |restaurant| %>
-      if ("<%= restaurant.nom %>" == $("#restaurant_id option:selected").val()) {
-          document.getElementById("menu_id").innerHTML = '<%=displayMenuItems(restaurant)%>';
-      }
       <% end %>
-    };
-      
+    </div>
+    <div id="commande">
+
+      <ul id="ulcommande">
+        <li id="boutonCommande"><%= content_tag(:button, "Commander", :type => :submit) %></li>
+        <li class="boutonLabel">Prêt à commander?</li>
+        <li class="boutonLabel">
+          <select id="restaurant_id" onChange="restaurantChoisi()">
+            <option value=0></option>
+            <% @restaurant.each do |r| %>
+                <option>
+                  <%= r.nom %>
+                </option>
+            <% end %>
+          </select>
+        </li>
+        <li class="boutonLabel"> Restaurants participants:</li>
+      </ul>
+    </div>
+
+    <div class="menu" id="menu_id">
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+      function restaurantChoisi() {
+          <% @restaurant.each do |restaurant| %>
+          if ("<%= restaurant.nom %>" == $("#restaurant_id option:selected").val()) {
+              document.getElementById("menu_id").innerHTML = '<%=displayMenuItems(restaurant)%>';
+          }
+          <% end %>
+      }
   </script>

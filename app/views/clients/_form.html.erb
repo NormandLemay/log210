@@ -12,55 +12,55 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :nom %><br>
+    <%= f.label :nom, :class => "labelClient"%><br>
     <%= f.text_field :nom %>
   </div>
   <div class="field">
-    <%= f.label :prenom %><br>
+    <%= f.label :prenom, :class => "labelClient" %><br>
     <%= f.text_field :prenom %>
   </div>
 
   <div class="field">
-    <%= f.label :telephone %><br>
+    <%= f.label :telephone, :class => "labelClient" %><br>
     <%= f.telephone_field :telephone %>
   </div>
   <div class="field">
-    <%= f.label :date_naissance %><br>
+    <%= f.label :date_naissance, :class => "labelClient" %><br>
     <%= f.date_select :date_naissance, start_year: 1950 %>
   </div>
   <%= f.fields_for :compte do |builder| %>
     <p>
-      <%= builder.label :courriel, "Courriel" %><br />
+      <%= builder.label :courriel, :class => "labelClient" %><br />
       <%= builder.text_field :courriel %><br />
     </p>
     <p>
-      <%= builder.label :mot_de_passe, "Mot de passe" %><br />
+      <%= builder.label  :mot_de_passe, :class => "labelClient" %><br />
       <%= builder.password_field :mot_de_passe %><br />
     </p>
   <% end %>
   <%= f.fields_for :address do |builder| %>
     <p>
-      <%= builder.label :rue, "Rue" %><br />
+      <%= builder.label :rue, :class => "labelClient" %><br />
       <%= builder.text_field :rue %><br />
     </p>
     <p>
-      <%= builder.label :no_civic, "No Civique" %><br />
+      <%= builder.label :no_civic, :class => "labelClient" %><br />
       <%= builder.text_field :no_civic %><br />
     </p>
     <p>
-      <%= builder.label :ville, "Ville" %><br />
+      <%= builder.label :ville, :class => "labelClient" %><br />
       <%= builder.text_field :ville %><br />
     </p>
     <p>
-      <%= builder.label :code_postal, "Code Postal" %><br />
+      <%= builder.label :code_postal, :class => "labelClient" %><br />
       <%= builder.text_field :code_postal %><br />
     </p>
     <p>
-      <%= builder.label :province, "Province" %><br />
+      <%= builder.label :province, :class => "labelClient" %><br />
       <%= builder.text_field :province %><br />
     </p>
     <p>
-      <%= builder.label :pays, "Pays" %><br />
+      <%= builder.label :pays, :class => "labelClient" %><br />
       <%= builder.text_field :pays %><br />
     </p>
   <% end %>
