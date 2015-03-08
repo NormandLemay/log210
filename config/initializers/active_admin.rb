@@ -54,10 +54,13 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
+
   config.authentication_method = :authenticate_entrepreneur!
 
   # == User Authorization
-  #
+
+  config.authorization_adapter = "OnlyEntrepreneursAuthorization"
+
   # Active Admin will automatically call an authorization
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
