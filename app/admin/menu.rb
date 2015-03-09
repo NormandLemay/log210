@@ -31,6 +31,7 @@ ActiveAdmin.register Menu do
     end
 
     def update
+      debugger
       super
     end
   end
