@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307193125) do
+ActiveRecord::Schema.define(version: 20150313010858) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -55,7 +55,19 @@ ActiveRecord::Schema.define(version: 20150307193125) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "restaurateur_id"
   end
+
+  create_table "description_plats", force: true do |t|
+    t.string   "nom"
+    t.string   "description"
+    t.float    "prix"
+    t.integer  "plat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "description_plats", ["plat_id"], name: "index_description_plats_on_plat_id"
 
   create_table "entrepreneurs", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -75,15 +87,6 @@ ActiveRecord::Schema.define(version: 20150307193125) do
   add_index "entrepreneurs", ["email"], name: "index_entrepreneurs_on_email", unique: true
   add_index "entrepreneurs", ["reset_password_token"], name: "index_entrepreneurs_on_reset_password_token", unique: true
 
-  create_table "menu_items", force: true do |t|
-    t.string   "nom"
-    t.string   "description"
-    t.float    "prix"
-    t.integer  "menu_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "menus", force: true do |t|
     t.string   "nom"
     t.integer  "restaurant_id"
@@ -92,6 +95,12 @@ ActiveRecord::Schema.define(version: 20150307193125) do
   end
 
   create_table "only_entrepreneurs_authorizations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plats", force: true do |t|
+    t.integer  "menu_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,7 +115,6 @@ ActiveRecord::Schema.define(version: 20150307193125) do
 
   create_table "restaurateurs", force: true do |t|
     t.string   "nom"
-    t.string   "courriel"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

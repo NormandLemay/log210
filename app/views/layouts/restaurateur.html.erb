@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log210</title>
+  <%= stylesheet_link_tag("restaurateur")%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+  <div class="shell">
+    <!-- Logo + Top Nav -->
+    <div id="top">
+      <h1><a href="#">Log 210</a></h1>
+      <div id="top-navigation">
+        Bienvenu <a href="#"><strong><%= @restaurateur.nom %></strong></a>
+        <span>|</span>
+        <a href="#">Déconnexion</a>
+      </div>
+    </div>
+    <!-- End Logo + Top Nav -->
+
+    <!-- Main Nav -->
+    <div id="navigation">
+      <ul>
+          <li><a href="<%= restaurateur_index_path %>" class="active"><span>Dashboard</span></a></li>
+          <li><a href="<%= restaurateur_preparer_commande_path %>"><span>Préparer Commande</span></a></li>
+          <li><a href="<%= restaurateur_gerer_livreur_path %>"><span>Gérer Livreur</span></a></li>
+      </ul>
+    </div>
+    <!-- End Main Nav -->
+  </div>
+</div>
+<!-- End Header -->
+<%= yield %>
+
+<!-- Footer -->
+<div id="footer">
+  <div class="shell">
+    <span class="left">&copy; 2010 - CompanyName</span>
+    <span class="right">
+      Design by <a href="http://chocotemplates.com" target="_blank" title="The Sweetest CSS Templates WorldWide">Chocotemplates.com</a>
+    </span>
+  </div>
+</div>
+<!-- End Footer -->
+</body>
+</html>

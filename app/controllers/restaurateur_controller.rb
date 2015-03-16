@@ -1,0 +1,22 @@
+class RestaurateurController < ActionController::Base
+  before_filter :authentification
+layout "restaurateur"
+  def index
+    @restaurants = @restaurateur.restaurants
+  end
+
+  def preparer_commande
+  end
+
+  def gerer_livreur
+  end
+
+
+  protected
+
+    def authentification
+      if session[:restaurateur_id].present?
+        @restaurateur = Restaurateur.find(session[:restaurateur_id])
+      end
+    end
+end

@@ -1,0 +1,36 @@
+<%= form_for @menu do |f| %>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "erreur") %>  On empêché la sauvegarde du menu:</h2>
+      <ul>
+      <% @menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if flash[:warning].present? %>
+    <div id="warning_explanation">
+      <h2><%= flash[:warning] %></h2>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :nom %><br />
+    <%= f.text_field :nom %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :restaurant_id, :value => session[:restaurant_id] %>
+  </div>
+
+  <%= f.fields_for :plats do |h| %>
+    <%= render "plat_fields", f: h %>
+  <%= link_to_add_fields "Ajouter plat", h, :description_plats %>
+  <% end %>
+
+<br /><br />
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

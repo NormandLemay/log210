@@ -1,0 +1,121 @@
+<!-- Container -->
+<div id="container">
+  <div class="shell">
+
+    <!-- Small Nav -->
+    <div class="small-nav">
+      <a href=<%= restaurateur_index_path %>>Dashboard</a>
+    </div>
+    <!-- End Small Nav -->
+
+    <!-- Message OK -->
+    <% if flash[:notice].present? %>
+    <div class="msg msg-ok">
+      <p><strong><%= flash[:notice] %></strong></p>
+    </div>
+    <% end %>
+    <!-- End Message OK -->
+
+    <!-- Message Error -->
+    <% if flash[:error].present? %>
+    <div class="msg msg-error">
+      <p><strong><%= flash[:error] %></strong></p>
+    </div>
+    <% end %>
+    <!-- End Message Error -->
+    <br />
+    <!-- Main -->
+    <div id="main">
+      <div class="cl">&nbsp;</div>
+
+      <!-- Content -->
+      <div id="content">
+
+        <!-- Box -->
+<!-- boucle sur les restaurants du restaurateur et fait afficher les menu (sans les items) -->
+        <% @restaurants.each do |restaurant| %>
+          <div class="box">
+            <!-- Box Head -->
+            <div class="box-head">
+              <h2 class="left"><%= restaurant.nom %></h2>
+            </div>
+            <!-- End Box Head -->
+
+            <!-- Table -->
+            <div class="table">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <th>Nom</th>
+                  <th width="110" class="ac">Action</th>
+                </tr>
+                <% restaurant.menus.each_with_index do |menu, idx| %>
+                  <tr class="<%= 'odd' if idx.modulo(2) == 0 %>">
+                    <td><h3><%= menu.nom %></h3></td>
+                    <td><a href="<%= edit_menu_path(menu.id) %>" class="ico edit">Modification</a></td>
+                  </tr>
+                <% end %>
+                <tr><td><%= link_to "Ajouter un menu", new_menu_path(:restaurant_id => restaurant.id) %></td></tr>
+              </table>
+            </div>
+            <!-- Table -->
+          </div>
+        <% end %>
+        <!-- End Box -->
+<!-- Fait afficher tous les commandes des restaurants du restaurateur -->
+        <!-- Box -->
+        <div class="box">
+          <!-- Box Head -->
+          <div class="box-head">
+            <h2>Add New Article</h2>
+          </div>
+          <!-- End Box Head -->
+
+          <form action="" method="post">
+
+            <!-- Form -->
+            <div class="form">
+                <p>
+                  <span class="req">max 100 symbols</span>
+                  <label>Article Title <span>(Required Field)</span></label>
+                  <input type="text" class="field size1" />
+                </p>
+                <p class="inline-field">
+                  <label>Date</label>
+                  <select class="field size2">
+                    <option value="">23</option>
+                  </select>
+                  <select class="field size3">
+                    <option value="">July</option>
+                  </select>
+                  <select class="field size3">
+                    <option value="">2009</option>
+                  </select>
+                </p>
+
+                <p>
+                  <span class="req">max 100 symbols</span>
+                  <label>Content <span>(Required Field)</span></label>
+                  <textarea class="field size1" rows="10" cols="30"></textarea>
+                </p>
+
+            </div>
+            <!-- End Form -->
+
+            <!-- Form Buttons -->
+            <div class="buttons">
+              <input type="button" class="button" value="preview" />
+              <input type="submit" class="button" value="submit" />
+            </div>
+            <!-- End Form Buttons -->
+          </form>
+        </div>
+        <!-- End Box -->
+
+      </div>
+      <!-- End Content -->
+      <div class="cl">&nbsp;</div>
+    </div>
+    <!-- Main -->
+  </div>
+</div>
+<!-- End Container -->

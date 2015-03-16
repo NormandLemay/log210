@@ -9,17 +9,20 @@ class AccueilController < ApplicationController
   end
 
   def deconnexion
-  	session.delete :client_id
-  	@compte_client = nil
+  	reset_session
   	redirect_to accueil_index_path
   end
 
   def connexion
   	compte = Compte.find_by_courriel_and_mot_de_passe(params[:courriel], params[:mot_de_passe])
-  	if compte.present?
+  	if compte.present? && compte.client_id.present?
   		session[:client_id] = compte.client_id
+      redirect_to accueil_index_path
+    elsif compte.present? && compte.restaurateur_id.present?
+      session[:restaurateur_id] = compte.restaurateur_id
+      redirect_to restaurateur_index_path
   	end
-  	redirect_to accueil_index_path
+
   end
 
 end

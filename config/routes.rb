@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
 
-  resources :accueil 
+  get 'restaurateur/index'
+
+  get 'restaurateur/preparer_commande'
+
+  get 'restaurateur/gerer_livreur'
+
+
+  resources :accueil
 
   post "/accueil/deconnexion" => "accueil#deconnexion"
   post "/accueil/connexion" => "accueil#connexion"
 
   resources :clients
+  resources :menus
 
   devise_for :entrepreneurs, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

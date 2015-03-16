@@ -1,0 +1,6 @@
+<fieldset>
+  <%= f.fields_for :description_plats do |h| %>
+    <%= render "description_plat_fields", f: h %>
+  <% end %>
+  <%#= link_to_add_fields "Ajouter Description plat", f, :description_plats %>
+</fieldset>
