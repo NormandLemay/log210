@@ -11,6 +11,8 @@ class MenusController < RestaurateurController
   def edit
    @menu = Menu.find(params[:id])
    @restaurant = @menu.restaurant
+   @plat = @menu.plats.build
+   @plat.description_plats.build
    session[:restaurant_id] = @menu.restaurant_id
   end
 

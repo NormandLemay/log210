@@ -17,6 +17,9 @@ layout "restaurateur"
     def authentification
       if session[:restaurateur_id].present?
         @restaurateur = Restaurateur.find(session[:restaurateur_id])
+      else
+        flash[:error] = "vous devez être authentifier pour accéder a cette page"
+        redirect_to root_path
       end
     end
 end
