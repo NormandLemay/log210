@@ -5,22 +5,24 @@ Rails.application.routes.draw do
   get 'restaurateur/preparer_commande'
 
   get 'restaurateur/gerer_livreur'
+  post '/restaurateur/deconnexion' => 'restaurateur#deconnexion'
 
 
   resources :accueil
 
-  post "/accueil/deconnexion" => "accueil#deconnexion"
-  post "/accueil/connexion" => "accueil#connexion"
+  post '/accueil/deconnexion' => 'accueil#deconnexion'
+  post '/accueil/connexion' => 'accueil#connexion'
 
   resources :clients
   resources :menus
 
   devise_for :entrepreneurs, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  # The priority is based upon order of creation:
+  #  first created -> highest priority.
+  # See how all your routes lay out with 'rake routes'.
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
    root 'accueil#index'
 
   # Example of regular route:
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
+  # Example resource route (maps HTTP verbs to controller
+  #            actions automatically):
   #   resources :products
 
   # Example resource route with options:

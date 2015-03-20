@@ -1,6 +1,6 @@
 class RestaurateurController < ActionController::Base
   before_filter :authentification
-layout "restaurateur"
+layout 'restaurateur'
   def index
     @restaurants = @restaurateur.restaurants
   end
@@ -11,6 +11,10 @@ layout "restaurateur"
   def gerer_livreur
   end
 
+  def deconnexion
+    reset_session
+    redirect_to root_path
+  end
 
   protected
 
@@ -18,7 +22,7 @@ layout "restaurateur"
       if session[:restaurateur_id].present?
         @restaurateur = Restaurateur.find(session[:restaurateur_id])
       else
-        flash[:error] = "vous devez être authentifier pour accéder a cette page"
+        flash[:error] = 'vous devez être authentifier pour accéder a cette page'
         redirect_to root_path
       end
     end

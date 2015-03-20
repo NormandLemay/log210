@@ -11,7 +11,7 @@ gem 'devise'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
-#gem "meta_search", '>= 1.1.0.pre'
+# gem "meta_search", '>= 1.1.0.pre'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -46,3 +46,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'formtastic', '~> 3.0'
 
 gem 'rails-i18n'
+
+gem 'rubocop', require: false

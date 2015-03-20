@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   	if session[:client_id].present?
   		@compte_client = Client.find(session[:client_id])
   	else
-  		flash[:error] = "vous devez être authentifier pour accéder a cette page"
+  		flash[:error] = 'vous devez être authentifier pour accéder a cette page'
   		redirect_to root_path
   	end
   end

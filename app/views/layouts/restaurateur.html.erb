@@ -15,9 +15,8 @@
     <div id="top">
       <h1><a href="#">Log 210</a></h1>
       <div id="top-navigation">
-        Bienvenu <a href="#"><strong><%= @restaurateur.nom %></strong></a>
-        <span>|</span>
-        <a href="#">Déconnexion</a>
+        Bienvenu <strong><%= @restaurateur.nom %></strong>
+        <%= button_to "Deconnexion", accueil_deconnexion_path %>
       </div>
     </div>
     <!-- End Logo + Top Nav -->

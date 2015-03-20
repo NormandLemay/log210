@@ -1,6 +1,6 @@
 class CommandeCourriel < ActionMailer::Base
 
-  default from: "lem.norm@gmail.com"
+  default from: 'lem.norm@gmail.com'
 
   def confirmation_commande(compte)
     @compte = compte

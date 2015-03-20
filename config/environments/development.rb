@@ -44,12 +44,12 @@ Rails.application.configure do
   config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.smtp_settings = {
-        :address                        => "smtp.gmail.com",
+        :address                        => 'smtp.gmail.com',
         :port                                        => 587,
-        :domain                         => "localhost:3000",
-        :user_name                 => "",
-        :password                 => "",
-        :authenticaton => "plain",
+        :domain                         => 'localhost:3000',
+        :user_name                 => '',
+        :password                 => '',
+        :authenticaton => 'plain',
         :enable_starttls_auto => true
 }
 end

@@ -19,8 +19,8 @@ ActiveAdmin.register Restaurateur do
        @restaurateur = Restaurateur.new(restaurateur_params)
        @restaurateur.save
       if params[:restaurateur][:restaurants_attributes].present?
-        params["restaurateur"]["restaurants_attributes"].values.each do |resto|
-          resto_id = resto.values_at("id")[0]
+        params['restaurateur']['restaurants_attributes'].values.each do |resto|
+          resto_id = resto.values_at('id')[0]
           restaurant = Restaurant.find(resto_id)
           restaurant.restaurateur_id = @restaurateur.id
           restaurant.save
@@ -35,8 +35,8 @@ ActiveAdmin.register Restaurateur do
     def update
       @restaurateur = Restaurateur.find(params[:id])
       @restaurateur.update_attributes(restaurateur_params)
-        params["restaurateur"]["restaurants_attributes"].values.each do |resto|
-          resto_id = resto.values_at("id")[0]
+        params['restaurateur']['restaurants_attributes'].values.each do |resto|
+          resto_id = resto.values_at('id')[0]
           restaurant = Restaurant.find(resto_id)
           restaurant.update_attribute(:restaurateur_id,@restaurateur.id)
         end
@@ -64,10 +64,10 @@ ActiveAdmin.register Restaurateur do
   show do |restaurateur|
     attributes_table do
       row :nom
-      row "Courriel" do
+      row 'Courriel' do
         restaurateur.compte.courriel
       end
-      row "Restaurant(s)" do
+      row 'Restaurant(s)' do
         liste_resto = []
         restaurateur.restaurants.each do |resto|
           liste_resto << resto.nom
@@ -80,9 +80,9 @@ ActiveAdmin.register Restaurateur do
   form do |f|
     @restaurants = Restaurant.all
     compte = restaurateur.compte.presence || restaurateur.build_compte
-    f.inputs "Restaurateur" do
+    f.inputs 'Restaurateur' do
       f.input :nom
-      f.inputs "compte" do
+      f.inputs 'compte' do
         f.semantic_fields_for :compte do |t|
           t.input :courriel
           t.input :mot_de_passe, :as => :password if compte.mot_de_passe.blank?

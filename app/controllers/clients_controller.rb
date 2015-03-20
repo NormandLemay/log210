@@ -10,7 +10,7 @@ class ClientsController < InheritedResources::Base
 	  @client = Client.find(params[:id])
 	  @client.update_attributes(client_params)
 	  if @client.save
-	    flash[:notice] = "Compte client créer avec succès"
+	    flash[:notice] = 'Compte client créer avec succès'
 	    session[:client_id] = @client.id
 	    redirect_to root_path
 	  else
@@ -22,7 +22,7 @@ class ClientsController < InheritedResources::Base
 	 #super
 	  @client = Client.new(client_params)
 	  if @client.save
-	    flash[:notice] = "Compte client créer avec succès"
+	    flash[:notice] = 'Compte client créer avec succès'
 	    session[:client_id] = @client.id
 	    redirect_to root_path
 	  else
