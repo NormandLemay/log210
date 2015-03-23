@@ -49,8 +49,15 @@ ActiveRecord::Schema.define(version: 20150323050822) do
     t.datetime "updated_at"
   end
 
-# Could not dump table "comptes" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "comptes", force: true do |t|
+    t.string   "courriel"
+    t.string   "mot_de_passe"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurateur_id"
+    t.integer  "livreur_id"
+  end
 
   create_table "description_plats", force: true do |t|
     t.string   "nom"

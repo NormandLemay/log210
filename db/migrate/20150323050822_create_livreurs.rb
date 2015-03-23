@@ -6,5 +6,6 @@ class CreateLivreurs < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_column :comptes, :livreur_id, :integer
   end
 end

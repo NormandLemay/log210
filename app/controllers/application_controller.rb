@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :null_session
 
   def authentification
-  	if session[:client_id].present?
-  		@compte_client = Client.find(session[:client_id])
-  	else
-  		flash[:error] = 'vous devez être authentifier pour accéder a cette page'
-  		redirect_to root_path
-  	end
+    if session[:client_id].present?
+      @compte_client = Client.find(session[:client_id])
+    else
+      flash[:error] = 'vous devez être authentifier pour accéder a cette page'
+      redirect_to root_path
+    end
   end
 end
