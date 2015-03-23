@@ -1,0 +1,37 @@
+<%= form_for(@livreur) do |f| %>
+  <% if @livreur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@livreur.errors.count, "error") %> prohibited this livreur from being saved:</h2>
+
+      <ul>
+      <% @livreur.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br/><br/>
+
+
+    <%= f.label :nom %><br>
+    <%= f.text_field :nom %><br>
+    <%= f.label :prenom %><br>
+    <%= f.text_field :prenom %><br>
+    <h1>test2</h1>
+    <%= f.fields_for :compte do |builder| %>
+    <p>
+      <%= builder.label :courriel %><br />
+      <%= builder.text_field :courriel %><br />
+    </p>
+        <h1>test</h1>
+    <p>
+      <%= builder.label  :mot_de_passe %><br />
+      <%= builder.password_field :mot_de_passe %><br />
+    </p>
+     <% end %>
+    <h1>test3</h1>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

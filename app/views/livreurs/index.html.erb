@@ -1,0 +1,27 @@
+<h1>Listing livreurs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @livreurs.each do |livreur| %>
+      <tr>
+        <td><%= livreur.nom %></td>
+        <td><%= livreur.prenom %></td>
+        <td><%= link_to 'Show', livreur %></td>
+        <td><%= link_to 'Edit', edit_livreur_path(livreur) %></td>
+        <td><%= link_to 'Destroy', livreur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Livreur', new_livreur_path %>
