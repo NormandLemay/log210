@@ -15,7 +15,7 @@
     <div id="top">
       <h1><a href="#">Log 210</a></h1>
       <div id="top-navigation">
-        Bienvenu <strong><%= @restaurateur.nom %></strong>
+        Bienvenu <strong><%= @restaurateur.nom if @restaurateur.present? %></strong>
         <%= button_to "Deconnexion", accueil_deconnexion_path %>
       </div>
     </div>
@@ -26,7 +26,7 @@
       <ul>
           <li><a href="<%= restaurateur_index_path %>" class="active"><span>Dashboard</span></a></li>
           <li><a href="<%= restaurateur_preparer_commande_path %>"><span>Préparer Commande</span></a></li>
-          <li><a href="<%= restaurateur_gerer_livreur_path %>"><span>Gérer Livreur</span></a></li>
+          <li><a href="<%= livreurs_path %>"><span>Gérer Livreur</span></a></li>
       </ul>
     </div>
     <!-- End Main Nav -->

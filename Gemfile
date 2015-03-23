@@ -48,3 +48,5 @@ gem 'formtastic', '~> 3.0'
 gem 'rails-i18n'
 
 gem 'rubocop', require: false
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'coffee-script-source', '1.8.0'

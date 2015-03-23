@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2742549212">
+  <component name="DataSourceManagerImpl" format="xml" hash="3374859995">
     <data-source source="LOCAL" name="Rails log210: development" uuid="f7e4deab-edc8-4b4e-a44f-dd1ef8458ac5">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Local_GIT_Directory\log210\db\development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\K24\RubymineProjects\log210\db\development.sqlite3</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails log210: test" uuid="a901aa8e-f35d-46aa-b991-737a772e82a3">

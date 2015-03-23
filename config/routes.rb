@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :livreurs
+
   get 'restaurateur/index'
 
   get 'restaurateur/preparer_commande'

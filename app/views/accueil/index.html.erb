@@ -8,7 +8,7 @@
     <div id="bodyConnexion">
       <% if @compte_client.blank? %>
           <div style="clear:both"></div>
-          <div id="authentification" style="z-index=9999">
+          <div id="authentification" style="z-index:9999">
             <form action=<%= accueil_connexion_path %> method="post" id="authentification">
               Courriel: <input type="text" name="courriel"><br/>
               Mot de passe: <input type="password" name="mot_de_passe"><br/>
