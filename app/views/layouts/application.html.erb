@@ -10,16 +10,29 @@
 
 
 <div id="nav">
-  <p class="title">Bienvenue , <%= "#{@compte_client.prenom}  #{@compte_client.nom}" if @compte_client.present?%> <%= "#{"Anonyme"}" if @compte_client.blank?%></p>
+  <p class="title">Bienvenue ,
+    <% if @compte_client.present? %>
+            <%= "#{@compte_client.prenom}  #{@compte_client.nom}" %>
+    <%end%>
+    <% if @compte_livreur.present?%>
+            <%= "#{@compte_livreur.prenom}  #{@compte_livreur.nom}" %>
+    <% else %>
+            <%= "#{"Anonyme"}" if @compte_client.blank?%>
+    <% end %>
+</p>
   <ul id="navigation">
-  <% if @compte_client.blank? %>
-    <li id="boutonInscription"><%= button_to "Nouveau client?", new_client_path, :method=>:get %></li>
-    <li class="boutonLabel">Nouveau client?</li>
-    <li id="boutonConnexion"><%= content_tag(:button, "Connexion", :type => :submit) %></li>
-    <li class="boutonLabel">Déjà inscrit?</li>
+  <% if @compte_client.present? || @compte_livreur.present?  %>
+        <% if @compte_client.present? %>
+        <li id="boutonInscription"><%= button_to "Modifier compte", edit_client_path(@compte_client.id), :method=>:get %></li>
+        <% else %>
+        <li id="boutonInscription"><%= button_to "Test", livreur_index_path, :method=>:get %></li>
+        <% end %>
+        <li id="boutonConnexion"><%= button_to "Deconnexion", accueil_deconnexion_path %></li>
   <% else %>
-     <li id="boutonInscription"><%= button_to "Modifier compte", edit_client_path(@compte_client.id), :method=>:get %></li>
-    <li id="boutonConnexion"><%= button_to "Deconnexion", accueil_deconnexion_path %></li>
+        <li id="boutonInscription"><%= button_to "Nouveau client?", new_client_path, :method=>:get %></li>
+        <li class="boutonLabel">Nouveau client?</li>
+        <li id="boutonConnexion"><%= content_tag(:button, "Connexion", :type => :submit) %></li>
+        <li class="boutonLabel">Déjà inscrit?</li>
   <% end %>
   </ul>
 </div>
