@@ -10,6 +10,7 @@
 
 
 <div id="nav">
+ <p class="homeButton"><a href= <%=root_path%> ><%= image_tag("home.svg", :alt => "logo", height: '50', width: '50') %></a></p>
   <p class="title">Bienvenue , <%= "#{@compte_client.prenom}  #{@compte_client.nom}" if @compte_client.present?%> <%= "#{"Anonyme"}" if @compte_client.blank?%></p>
   <ul id="navigation">
   <% if @compte_client.blank? %>
