@@ -24,7 +24,7 @@ class AccueilController < ApplicationController
       redirect_to restaurateur_index_path
     elsif compte.present? && compte.livreur_id.present?
       session[:livreur_id] = compte.livreur_id
-      redirect_to livreurs_path #provisoir; je vais devoir ajouter un path ici
+      redirect_to livreur_index_path
     else
       redirect_to root_path
     end
