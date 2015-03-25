@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :ligne_commandes
+
+  resources :commandes
+
   resources :livreurs
 
   get 'restaurateur/index'
@@ -14,7 +18,7 @@ Rails.application.routes.draw do
 
   post '/accueil/deconnexion' => 'accueil#deconnexion'
   post '/accueil/connexion' => 'accueil#connexion'
-
+  post '/accueil/connexion' => 'accueil#connexion'
   resources :clients
   resources :menus
 

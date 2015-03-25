@@ -1,0 +1,23 @@
+<h1>Listing ligne_commandes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ligne_commandes.each do |ligne_commande| %>
+      <tr>
+        <td><%= link_to 'Show', ligne_commande %></td>
+        <td><%= link_to 'Edit', edit_ligne_commande_path(ligne_commande) %></td>
+        <td><%= link_to 'Destroy', ligne_commande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ligne commande', new_ligne_commande_path %>

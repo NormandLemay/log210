@@ -5,7 +5,6 @@ class LivreursController < InheritedResources::Base
   def new
     @livreur = Livreur.new
     @livreur.build_compte
-
   end
 
   def create
