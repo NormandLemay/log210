@@ -1,4 +1,4 @@
-<%= form_for @menu do |f| %>
+<%= form_for @menu  do |f| %>
   <% if @menu.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@menu.errors.count, "erreur") %>  On empêché la sauvegarde du menu:</h2>
@@ -32,5 +32,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-

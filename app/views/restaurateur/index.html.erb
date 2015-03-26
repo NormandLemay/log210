@@ -54,52 +54,13 @@
                     <td><a href="<%= edit_menu_path(menu.id) %>" class="ico edit">Modification</a></td>
                   </tr>
                 <% end %>
-                <tr><td><%= link_to "Ajouter un menu", new_menu_path(:restaurant_id => restaurant.id) %></td></tr>
+                <tr><td><%= link_to "Ajouter un menu", new_menu_path(restaurant_id: restaurant.id) %></td></tr>
               </table>
             </div>
             <!-- Table -->
           </div>
         <% end %>
         <!-- End Box -->
-<!-- Fait afficher tous les commandes des restaurants du restaurateur -->
-        <!-- Box -->
-        <div class="box">
-          <!-- Box Head -->
-          <div class="box-head">
-            <h2>Add New Article</h2>
-          </div>
-          <!-- End Box Head -->
-
-          <form action="" method="post">
-
-            <!-- Form -->
-            <div class="form">
-                <p>
-                  <span class="req">max 100 symbols</span>
-                  <label>Article Title <span>(Required Field)</span></label>
-                  <input type="text" class="field size1" />
-                </p>
-                <p class="inline-field">
-                  <label>Date</label>
-                  <select class="field size2">
-                    <option value="">23</option>
-                  </select>
-                  <select class="field size3">
-                    <option value="">July</option>
-                  </select>
-                  <select class="field size3">
-                    <option value="">2009</option>
-                  </select>
-                </p>
-
-                <p>
-                  <span class="req">max 100 symbols</span>
-                  <label>Content <span>(Required Field)</span></label>
-                  <textarea class="field size1" rows="10" cols="30"></textarea>
-                </p>
-
-            </div>
-            <!-- End Form -->
 
             <!-- Form Buttons -->
             <div class="buttons">
