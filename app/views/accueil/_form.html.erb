@@ -18,7 +18,11 @@
                               <tr>
                                 <td><h3><b>Nom du plat: </b><%= plat_description.nom %></h3>
                                 <h3><b>Prix du plat: </b> <%= plat_description.prix %></td>
-                                <td><%=ajoutDropDown%></td>
+                                <td>
+                                  <select id="<%=plat.id%>" onChange=updateListeCommande(value,"<%=plat.id%>")>
+                                     <%=ajoutDropDown%>
+                                  </select>
+                                </td>
                               </tr>
                           <% end %>
                       <% end %>
@@ -29,14 +33,24 @@
                   <%= c.hidden_field :heure, :value =>  DateTime.parse(Time.now.to_s).strftime("%H:%M") %>
                   <%= c.hidden_field :status, :value => "A preparer" %>
                   <%= c.hidden_field :numero_confirmation, :value => rand(1...50000) %>
+
                   <%= c.submit %>
                 </div>
               </div>
             </div>
-        <% end %>
       </div>
     </div>
     </div>
 
-<% end %>
+    <script type="text/javascript">
+        function updateListeCommande(qte, plat_ID) {
+            alert("plat.id :" + plat_ID);
+            alert("plat.quantite :" + qte);
+            <%= c.fields_for :ligne_commande do |lc| %>
+                <%= lc.hidden_field :quantite, :value => "qte" %> //ce que je souhaite faire.
+                <%= lc.hidden_field :plat => Plat.find(plat_ID)%> // ce que je souhaite faire.
+            <% end %>
+        }
+    </script>
 
+<% end %>

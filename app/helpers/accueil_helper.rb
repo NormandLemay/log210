@@ -34,14 +34,13 @@ module AccueilHelper
 
  def ajoutDropDown()
     output = []
-    output << '<select id=\'qte<%=plat.id%>\'>'
+
     output << '<option selected disabled hidden value=\'\'>Quantité</option>'
     output <<    '<option>1</option>'
     output <<    '<option>2</option>'
     output <<    '<option>3</option>'
     output <<    '<option>4</option>'
     output <<    '<option>5</option>'
-    output << '</select>'
     output.join.html_safe
   end
 
