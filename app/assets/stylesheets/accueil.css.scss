@@ -11,18 +11,7 @@ body {
   top: 0px;
   max-height: 66px;
   z-index: 1;
-
 }
-
-#bodycommande {
-  background-color: #2E2F30;
-  width: 100%;
-  height: 100%;
-  top: 20%;
-  position: absolute;
-
-}
-
 
 #bodyConnexion {
   background-color: #2E2F30;
@@ -33,25 +22,19 @@ body {
   display:none;
 }
 
-#commande {
-  background-color: #000000;
-  position: absolute;
-  left: 28%;
-  margin-top: 45px;
-  top: 20px;
-  border-radius: 10px;
-  min-width: 650px;
-  height: 80px;
-  padding-left: 2px;
-  padding-top: 20px;
-
-}
-
 .homeImage {
+  margin-top: 5%;
   height: 45%;
   width: 25%;
   position: absolute;
 }
+
+.header {
+  color: #6e6d0d;
+  font-family: verdana;
+  font-size: 15px;
+}
+
 
 .subtitle {
   color: #EDEDED;
@@ -76,14 +59,6 @@ body {
   padding-left: 15px;
   background-color: #000000;
   font-size:medium;
-}
-#boutonCommande {
-  color: #949745;
-  display: inline;
-  padding: 5px;
-  float: right;
-  display: inline;
-  padding-left: 15px;
 }
 
 #navigation {
@@ -132,7 +107,9 @@ select {
 }
 
 div.menu {
-  margin-top: 20%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 10%;
   min-width: 650px;
   height: 400px;
   color: #949745;
@@ -143,6 +120,14 @@ div.menu {
   border-width: medium;
   left: 28%;
   position: absolute;
+}
+
+div.menu_id {
+  margin-top: 10%;
+}
+
+.new_commande {
+  margin-top: 5%;
 }
 
 h3.titremenu {
@@ -189,3 +174,20 @@ div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%;
 div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
 .ui-dialog .ui-state-error { padding: .3em; }
 .validateTips { border: 1px solid transparent; padding: 0.3em; }
+.box-head-accueil { -moz-border-radius-topleft:5px; -moz-border-radius-topright:5px; -webkit-border-top-left-radius:5px; -webkit-border-top-right-radius:5px; }
+.box-head-accueil { background:#000000; color: #949745; ; height:32px;padding: 0 10px; line-height:32px; white-space:nowrap; border-bottom:solid 1px #fff; }
+.box-head-accueil .right{ padding-top:5px; line-height:13px;}
+.box-head-accueil .right label,
+.box-head-accueil .right input { float:left; }
+.box-head-accueil .right label { padding:4px 0 0 0;}
+.box-head-accueil .right input { margin-left:5px;}
+h2.accueil { font-size:15px; font-weight: normal; color: #949745; }
+#container-accueil { padding:20px; margin-left:30%}
+.actions {float: left;}
+.box-accueil { background:#fbfcfc; height:100%; width:40%; padding:1px; margin-bottom:20px;display: none; }
+#restaurant_id {
+  margin-top: 5%;
+  margin-left: 28%;
+  position: absolute;
+  width:19%;
+}
