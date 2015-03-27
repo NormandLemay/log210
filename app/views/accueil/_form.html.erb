@@ -33,7 +33,6 @@
                   <%= c.hidden_field :heure, :value =>  DateTime.parse(Time.now.to_s).strftime("%H:%M") %>
                   <%= c.hidden_field :status, :value => "A preparer" %>
                   <%= c.hidden_field :numero_confirmation, :value => rand(1...50000) %>
-
                   <%= c.submit %>
                 </div>
               </div>
