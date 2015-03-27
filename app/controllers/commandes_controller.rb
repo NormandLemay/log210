@@ -6,7 +6,6 @@ class CommandesController < InheritedResources::Base
   end
 
   def create
-    debugger
     @commande = Commande.new(commande_params)
     @commande.save
     redirect_to root_path

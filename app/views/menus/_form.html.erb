@@ -24,8 +24,9 @@
 
   <%= f.fields_for :plats do |h| %>
     <%= render "plat_fields", f: h %>
-  <%= link_to_add_fields "Ajouter plat", h, :description_plats %>
+  <%#= link_to_add_fields "Ajouter description plat", h, :description_plats %>
   <% end %>
+  <%= link_to_add_fields "Ajouter plat", f, :plats %>
 
 <br /><br />
   <div class="actions">
