@@ -38,19 +38,9 @@
                 </div>
               </div>
             </div>
+        <% end %>
       </div>
     </div>
     </div>
-
-    <script type="text/javascript">
-        function updateListeCommande(qte, plat_ID) {
-            alert("plat.id :" + plat_ID);
-            alert("plat.quantite :" + qte);
-            <%= c.fields_for :ligne_commande do |lc| %>
-                <%= lc.hidden_field :quantite, :value => "qte" %> //ce que je souhaite faire.
-                <%= lc.hidden_field :plat => Plat.find(plat_ID)%> // ce que je souhaite faire.
-            <% end %>
-        }
-    </script>
-
 <% end %>
+

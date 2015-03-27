@@ -1,0 +1,32 @@
+<div>
+  <% @restaurants.each do |restaurant| %>
+    <% @commande = Commande.new %>
+    <%= form_for @commande do |f| %>
+    <%= f.hidden_field :restaurant_id, :value => restaurant.id %>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <% restaurant.menus.each do |menu| %>
+            <tr>
+              <th><%= menu.nom %> </th>
+              <th>Sélection</th>
+            </tr>
+                <% @commande.ligne_commandes.build %>
+            <% menu.plats.each do |plat| %>
+                <%= f.fields_for :ligne_commandes do |lc|%>
+                  <tr>
+                    <%= lc.hidden_field :plat_id ,:value => plat.id %>
+                    <td><h3><b>Nom du plat: </b><%= plat.description_plats.first.nom %></h3>
+                    <h3><b>Prix du plat: </b> <%= plat.description_plats.first.prix %></td>
+                    <td>
+                    <%= lc.select :quantite, [0, 1, 2, 3, 4, 5] %>
+                    </td>
+                  </tr>
+              <% end %>
+            <% end %>
+        <% end %>
+      </table>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
