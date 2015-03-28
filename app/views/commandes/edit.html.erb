@@ -1,6 +1,10 @@
 <h1>Editing commande</h1>
 
-<%= render 'form' %>
-
+<%= form_for @commande do |f| %>
+    <%= f.label :date, "Date de livraison:"%>
+    <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
+    <%= f.label :heure, "Heure de livraison:"%>
+    <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+<%end%>
 <%= link_to 'Show', @commande %> |
 <%= link_to 'Back', commandes_path %>

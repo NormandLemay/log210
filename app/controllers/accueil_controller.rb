@@ -7,9 +7,7 @@ class AccueilController < ApplicationController
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
     end
-    #@restaurant = Restaurant.find(params[:restaurant_id])
-    #@commandes = @restaurant.commandes.build
-    #@ligne_commandes = @commandes.ligne_commandes.build
+
   end
 
   def deconnexion

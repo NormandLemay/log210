@@ -3,6 +3,7 @@ class CommandesController < InheritedResources::Base
   def new
     @commande = Commande.new
     @ligne_commande = @commande.ligne_commandes.build
+    redirect_to root_path
   end
 
   def create
@@ -13,7 +14,7 @@ class CommandesController < InheritedResources::Base
       end
     end
     @commande.save
-    redirect_to root_path
+    redirect_to commande_path(@commande.id)
   end
 
   private

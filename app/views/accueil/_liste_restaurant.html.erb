@@ -33,13 +33,20 @@
                     <% end %>
                 <% end %>
               </table>
-
+              <div class="info">
+                 <%= f.label :date, "Date de livraison:"%>
+                 <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
+                 <%= f.label :heure, "Heure de livraison:"%>
+                 <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+                 <%= f.hidden_field :numero_confirmation, :value => rand(1...50000) %>
+              </div>
               <div class="actions">
-                <%= f.submit %>
+                <%= f.submit :id => 'commande'%>
               </div>
           <% end %>
         </div>
     <% end %>
+
   </div>
 </div>
 
@@ -53,9 +60,9 @@
             }
         }));
             if(noQTE == true) {
-                $('input:submit').attr("disabled", true);
+                $("#commande").attr("disabled", true);
             } else{
-                $('input:submit').attr("disabled", false);
+                $("#commande").attr("disabled", false);
             }
     }
 </script>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :ligne_commandes
 
   resources :commandes
+  get '/commande/index'
 
   resources :livreurs
   get 'livreur/index'

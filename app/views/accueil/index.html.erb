@@ -19,8 +19,8 @@
   </div>
     <div id="menu_id">
       <%= addHeader() %>
+
       <%= render 'liste_restaurant' %>
-      <%#= render 'form' %>
     </div>
   </div>
 </div>
@@ -33,7 +33,7 @@
             $("#box<%= restaurant.id %>").show();
         }
         <% end %>
-        $('input:submit').attr("disabled", true);
+        $("#commande").attr("disabled", true);
     }
 </script>
 
