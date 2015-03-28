@@ -5,7 +5,6 @@ class Commande < ActiveRecord::Base
 
   accepts_nested_attributes_for :ligne_commandes, :allow_destroy =>true
 
-
   private
 
     def init_valeur
