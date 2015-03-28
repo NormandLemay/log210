@@ -1,5 +1,9 @@
 body {
   margin: 0px;
+  margin: 0px auto;
+  margin-top: 80px;
+  font-family: verdana;
+  background-color: #2E2F30;
 }
 
 #nav {
@@ -84,13 +88,6 @@ li {
   padding-left: 0px;
   padding-top: 10px;
   float: right;
-}
-
-#body {
-  width: 850px;
-  margin: 0px auto;
-  margin-top: 80px;
-  font-family: verdana;
 }
 
 li.boutonLabel {
@@ -208,6 +205,7 @@ th.cellMenu{
 #notice{
   margin-top: 8%;
   background-color: #2E2F30;
+
 }
 body{
   background-color: #2E2F30;
@@ -216,4 +214,5 @@ body{
 .edit_commande{
   margin-top: 3.3%;
   background-color: #2E2F30;
+
 }

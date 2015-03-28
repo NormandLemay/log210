@@ -1,4 +1,4 @@
-class CommandesController < InheritedResources::Base
+class CommandesController < ApplicationController
 
   def new
     @commande = Commande.new
@@ -26,13 +26,19 @@ class CommandesController < InheritedResources::Base
       @compte_client = Client.find(session[:client_id])
 
     @commande.ligne_commandes.each do |lc|
-      unless lc.valid?
-        lc.delete
-      end
+      lc.delete unless lc.valid?
     end
       @commande.save
       redirect_to commande_path(@commande.id)
     end
+  end
+
+  def index
+    @commandes = Commande.all
+  end
+
+  def show
+    @commande = Commande.find_by_id(params[:id])
   end
 
   private
