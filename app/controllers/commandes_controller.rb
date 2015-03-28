@@ -7,6 +7,11 @@ class CommandesController < InheritedResources::Base
 
   def create
     @commande = Commande.new(commande_params)
+    @commande.ligne_commandes.each do |lc|
+      unless lc.valid?
+        lc.delete
+      end
+    end
     @commande.save
     redirect_to root_path
   end

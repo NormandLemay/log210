@@ -2,7 +2,9 @@ class Commande < ActiveRecord::Base
   has_many :ligne_commandes
   belongs_to :restaurant
   before_validation :init_valeur
+
   accepts_nested_attributes_for :ligne_commandes, :allow_destroy =>true
+
 
   private
 
