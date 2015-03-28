@@ -39,6 +39,7 @@
 <%= yield %>
 
 <script>
+  document.getElementsByTagName('link')[1].disabled = true;
     $(function() {
         $('#boutonConnexion').click(function() {
             $('#commande').toggle();

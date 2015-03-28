@@ -1,6 +1,6 @@
 class AccueilController < ApplicationController
 
-  before_filter :authentification, except: [:index]
+  before_filter :authentification, except: [:index, :connexion]
   def index
     @restaurants = Restaurant.joins(:menus).distinct
     if session[:client_id].present?
