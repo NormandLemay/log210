@@ -21,16 +21,21 @@ module AccueilHelper
 
   def addHeader()
     output = []
-    output << '<div class = header>Liste des restaurants participants: <select id=\'restaurant_id\' onChange=\'restaurantChoisi()\'>'
-    output << '<option selected disabled hidden value=\'\'>Sélectionner un restaurant</option>'
-     @restaurants.each do |r|
-       output <<    '<option>'
-       output <<      r.nom
-       output <<    '</option>'
-     end
-    output << '</select></div>'
-    output.join.html_safe
-  end
+    if session[:client_id].present?
+       output << '<div class = header>Liste des restaurants participants: <select id=\'restaurant_id\' onChange=\'restaurantChoisi()\'>'
+       output << '<option selected disabled hidden value=\'\'>Sélectionner un restaurant</option>'
+       @restaurants.each do |r|
+         output <<    '<option>'
+         output <<      r.nom
+         output <<    '</option>'
+       end
+      output << '</select></div>'
+      output.join.html_safe
+    else
+      output << '<div class = header>Connectez-vous pour sélectionner un restaurant participant.</div>'
+      output.join.html_safe
+    end
+    end
 
  def ajoutDropDown()
     output = []

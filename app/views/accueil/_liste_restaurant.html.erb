@@ -38,7 +38,6 @@
                  <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
                  <%= f.label :heure, "Heure de livraison:"%>
                  <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
-                 <%= f.hidden_field :numero_confirmation, :value => rand(1...50000) %>
               </div>
               <div class="actions">
                 <%= f.submit :id => 'commande'%>
@@ -46,14 +45,12 @@
           <% end %>
         </div>
     <% end %>
-
   </div>
 </div>
 
 <script>
     function checkSubmit() {
         var noQTE = true;
-
         ($("[id$=_quantite]").each( function() {
             if (($(this).val()) != 0) {
                 noQTE = false;

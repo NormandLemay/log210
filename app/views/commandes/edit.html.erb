@@ -5,6 +5,8 @@
     <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
     <%= f.label :heure, "Heure de livraison:"%>
     <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+    <div class="actions">
+      <%= f.submit :id => 'commande'%>
+    </div>
 <%end%>
 <%= link_to 'Show', @commande %> |
-<%= link_to 'Back', commandes_path %>

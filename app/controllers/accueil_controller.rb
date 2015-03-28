@@ -3,7 +3,6 @@ class AccueilController < ApplicationController
 
   def index
     @restaurants = Restaurant.joins(:menus).distinct
-
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
     end

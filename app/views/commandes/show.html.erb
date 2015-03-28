@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Nom du client:</strong>
+  <%= @compte_client.prenom %>  <%= @compte_client.nom %>
+</p>
+
+<p>
   <strong>Heure de la commande:</strong>
   <%= @commande.heure %>
 </p>
@@ -15,5 +20,17 @@
   <%= @commande.numero_confirmation %>
 </p>
 
+<% @commande.ligne_commandes.each do |lc| %>
+    <% @plat = Plat.find(lc.plat_id)%>
+    <p>plat name: <%= @plat.description_plats.first.nom %></p>
+    <p>Description du plat: <%= @plat.description_plats.first.description %></p>
+    <p>Quantité: <%= lc.quantite %></p>
+    <p>Prix: <%= @plat.description_plats.first.prix %></p>
+<%end%>
+
+<p>
+  <strong>Total de la facture:</strong>
+  <%= @commande.total %>
+</p>
+
 <%= link_to 'Edit', edit_commande_path(@commande) %> |
-<%= link_to 'Back', commandes_path %>
