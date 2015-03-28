@@ -1,6 +1,6 @@
 class AccueilController < ApplicationController
-  include AccueilHelper
 
+  before_filter :authentification, except: [:index]
   def index
     @restaurants = Restaurant.joins(:menus).distinct
     if session[:client_id].present?

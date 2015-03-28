@@ -1,5 +1,7 @@
 class CommandesController < ApplicationController
 
+  before_filter :authentification, except: [:index]
+
   def new
     @commande = Commande.new
     @ligne_commande = @commande.ligne_commandes.build
@@ -25,9 +27,9 @@ class CommandesController < ApplicationController
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
 
-    @commande.ligne_commandes.each do |lc|
-      lc.delete unless lc.valid?
-    end
+      @commande.ligne_commandes.each do |lc|
+        lc.delete unless lc.valid?
+      end
       @commande.save
       redirect_to commande_path(@commande.id)
     end

@@ -2,7 +2,7 @@
 
 <p>
   <strong>Nom du client:</strong>
-  <%= @compte_client.prenom %>  <%= @compte_client.nom %>
+  <%= @compte_client.try(:prenom) %>  <%= @compte_client.try(:nom) %>
 </p>
 
 <p>
