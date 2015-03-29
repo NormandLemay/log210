@@ -35,9 +35,9 @@ class ClientsController < InheritedResources::Base
   private
 
     def client_params
-      params.require(:client).permit(:nom, :prenom, :date_naissance, :telephone,
+      params.require(:client).permit(:nom, :prenom, :date_naissance, :telephone,:no_civic, :rue, :code_postal, :ville, :province, :pays, :id,
                      compte_attributes:[:id, :courriel, :mot_de_passe],
-                     address_attributes: [:id, :rue, :no_civic, :pays, :province, :ville, :code_postal])
+                     address_attributes:[:no_civic, :rue, :code_postal, :ville, :province, :pays, :id])
     end
 end
 

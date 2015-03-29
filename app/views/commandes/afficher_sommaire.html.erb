@@ -1,22 +1,26 @@
 <p id="notice"><%= notice %></p>
+
+
+
+<div id="info_commande">
+<% @commande.ligne_commandes.each do |lc| %>
+    <% @plat = Plat.find(lc.plat_id)%>
+      <p> <strong>plat name:</strong> <%= @plat.description_plats.first.nom %></p>
+      <p> <strong>Description du plat:</strong> <%= @plat.description_plats.first.description %></p>
+      <p> <strong>Quantité:</strong> <%= lc.quantite %></p>
+      <p> <strong>Prix:</strong> <%= @plat.description_plats.first.prix %></p>
+<%end%>
+
+<p>
+  <u> <strong>Total de la facture:</strong>
+  <%= @commande.total %> $ </u>
+</p>
+</div>
+<div id="info_livraison">
 <p>
   <strong>Numéro de confirmation:</strong>
   <%= @commande.numero_confirmation %>
 </p>
-
-<% @commande.ligne_commandes.each do |lc| %>
-    <% @plat = Plat.find(lc.plat_id)%>
-    <p>plat name: <%= @plat.description_plats.first.nom %></p>
-    <p>Description du plat: <%= @plat.description_plats.first.description %></p>
-    <p>Quantité: <%= lc.quantite %></p>
-    <p>Prix: <%= @plat.description_plats.first.prix %></p>
-<%end%>
-
-<p>
-  <strong>Total de la facture:</strong>
-  <%= @commande.total %>
-</p>
-
 <p>
   <strong>Nom du client:</strong>
   <%= @compte_client.try(:prenom) %>  <%= @compte_client.try(:nom) %>
@@ -33,16 +37,26 @@
 </p>
 
 <p>
-  <strong>Adresse:</strong>
+  <strong>Adresse de livraison:</strong>
+      <%= collection_select(:post, :address, @addresses.all, :id, :adresse_complete,  {prompt: "Selectionner une adresse"}, {include_blank: "Other"} )%>
+      <button type="button" onclick="showForm()">Ajouter adresse</button>
   <%#= faire afficher la liste des adresses du client dans une liste avec cette variable @addresses
   ensuite avoir un option dans le select qui soit nouvelle adresse
   lorsque ce choix est fait tu affiches le formulaire ci-dessous %>
 </p>
-          <form action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
-            tous les champs de addresse sauf le client_id: <input type="text" name="rue"><br/>
-            bla bla bla: <input type="text" name="code postal"><br/>
-            <input type="submit" value="Complèter">
+          <form id="form_address_id" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+            Numéro civique:  <input type="text" name="no_civic"><br/>
+            Rue: <input type="text" name="rue"><br/>
+            Code Postal: <input type="text" name="code_postal"><br/>
+            Ville: <input type="text" name="ville"><br/>
+            Province: <input type="text" name="province"><br/>
+            Pays: <input type="text" name="pays"><br/>
+            <input id="bouton_confirmation_id" type="submit" value="Confirmation">
           </form>
+</div>
 
-
-
+<script>
+    function showForm() {
+            $("#form_address_id").toggle();
+    }
+</script>

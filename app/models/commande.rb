@@ -9,7 +9,6 @@ class Commande < ActiveRecord::Base
                 :prete, :en_livraison, :livrer]
 
   accepts_nested_attributes_for :ligne_commandes, allow_destroy: true
-
   accepts_nested_attributes_for :address, allow_destroy: true
 
   def passer_etape_suivante

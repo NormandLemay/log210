@@ -37,9 +37,16 @@ class CommandesController < ApplicationController
   def completer_commande
     @commande = Commande.find_by_id(params[:id])
     #ici si tu fait afficher les params avec debugger
-    #tu pourras plus facilement faire ton create
-    #adresse = Address.create!(params)
-    #ensuite tu fais @commande.address_id = adresse.id
+   #tu pourras plus facilement faire ton create
+   #adresse = Address.create!(params)
+     #ensuite tu fais @commande.address_id = adresse.id
+    puts "TEST PARAM AVANT DELETE ",params
+    #params.delete :action
+    #params.delete :controller
+   # puts "TEST PARAM APRÈS DELETE ",params
+    @adresse = Address.create!(params)
+    @compte_client.address.create(params)
+    @commande.address_id = @adresse.id
     render action: 'show', id: @commande.id
   end
 
@@ -57,8 +64,7 @@ class CommandesController < ApplicationController
         :total,
         :restaurant_id,
         :address_id,
+        address_attributes:[:no_civic, :rue, :code_postal, :ville, :province, :pays, :id],
         ligne_commandes_attributes:[:quantite, :plat_id])
     end
 end
-
-
