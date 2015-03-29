@@ -1,8 +1,11 @@
+
 <div class="carnet">
-
     <h1>Liste des commandes actuellement disponibles</h1>
-  <tbody>
+<script>
 
+</script>
+
+  <tbody>
   <% @commandesPretes.each do |commande|  %>
       <table class="myTable">
       <tr>
@@ -10,7 +13,7 @@
         <td>Heure désirée: <%= commande.heure %></td>
         <td>Status: <%= commande.status %></td>
         <td>Total de la commande: <%= commande.total %></td>
-        <td><%= link_to "Show", {:controller => "livreur", :action => "show", :commande => commande.id } %></td>
+        <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
       </tr>
       </table>
   <% end %>
