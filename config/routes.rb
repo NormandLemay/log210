@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'restaurateur/index'
 
   get 'restaurateur/preparer_commande'
+  put 'restaurateur/passer_etape_suivante'
 
   get 'restaurateur/gerer_livreur'
   post '/restaurateur/deconnexion' => 'restaurateur#deconnexion'

@@ -31,6 +31,7 @@ class CommandesController < ApplicationController
         lc.delete unless lc.valid?
       end
       @commande.save
+      @commande.a_preparer!
       redirect_to commande_path(@commande.id)
     end
   end

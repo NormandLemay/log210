@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327014200) do
+ActiveRecord::Schema.define(version: 20150329001846) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150327014200) do
     t.integer  "restaurant_id"
     t.date     "date"
     t.time     "heure"
-    t.string   "status"
+    t.integer  "status",              limit: 255
     t.integer  "numero_confirmation"
     t.integer  "total"
   end
