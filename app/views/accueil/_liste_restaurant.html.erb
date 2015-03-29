@@ -38,6 +38,10 @@
                  <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
                  <%= f.label :heure, "Heure de livraison:"%>
                  <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+                <h3>
+                  Adresse de livraison:<%= collection_select(:post, :address, @compte_client.address.all, :id, :adresseComplete,  {:prompt => "Selectionner une adresse"} )%>
+                  <%= button_to "test", ajoutNouvelleAdresse(), :method => :get %>
+                </h3>
               </div>
               <div class="actions">
                 <%= f.submit :id => 'commande'%>

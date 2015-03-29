@@ -39,7 +39,6 @@ module AccueilHelper
 
  def ajoutDropDown()
     output = []
-
     output << '<option selected disabled hidden value=\'\'>Quantité</option>'
     output <<    '<option>1</option>'
     output <<    '<option>2</option>'
@@ -47,6 +46,15 @@ module AccueilHelper
     output <<    '<option>4</option>'
     output <<    '<option>5</option>'
     output.join.html_safe
+ end
+
+  def ajoutNouvelleAdresse()
+
   end
+
+
+
+
+
 
 end

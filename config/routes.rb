@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   post '/accueil/deconnexion' => 'accueil#deconnexion'
   post '/accueil/connexion' => 'accueil#connexion'
   post '/accueil/connexion' => 'accueil#connexion'
+
   resources :clients
+
   resources :menus
 
   devise_for :entrepreneurs, ActiveAdmin::Devise.config

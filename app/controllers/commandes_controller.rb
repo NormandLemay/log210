@@ -4,6 +4,9 @@ class CommandesController < ApplicationController
 
   def new
     @commande = Commande.new
+    if session[:client_id].present?
+      @compte_client = Client.find(session[:client_id])
+    end
     @ligne_commande = @commande.ligne_commandes.build
     redirect_to root_path
   end
@@ -26,18 +29,18 @@ class CommandesController < ApplicationController
     @commande = Commande.new(commande_params)
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
-
-      @commande.ligne_commandes.each do |lc|
-        lc.delete unless lc.valid?
-      end
+    end
+    @commande.ligne_commandes.each do |lc|
+      lc.delete unless lc.valid?
+    end
       @commande.save
       @commande.a_preparer!
       redirect_to commande_path(@commande.id)
-    end
   end
 
   def index
     @commandes = Commande.all
+    @addresses = Address.find(@compte_client.id)
   end
 
   def show
@@ -52,7 +55,8 @@ class CommandesController < ApplicationController
         :numero_confirmation,
         :total,
         :restaurant_id,
-        ligne_commandes_attributes:[:quantite, :plat_id])
+        ligne_commandes_attributes:[:quantite, :plat_id],
+        address_attributes: [:id, :rue, :no_civic, :pays, :province, :ville, :code_postal])
     end
 end
 

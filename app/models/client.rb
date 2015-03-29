@@ -4,4 +4,8 @@ class Client < ActiveRecord::Base
 	accepts_nested_attributes_for :address
 	accepts_nested_attributes_for :compte
 
+
+
+
+
 end

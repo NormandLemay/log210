@@ -5,8 +5,8 @@ class AccueilController < ApplicationController
     @restaurants = Restaurant.joins(:menus).distinct
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
+      @address_client = Address.find(@compte_client.id)
     end
-
   end
 
   def deconnexion
