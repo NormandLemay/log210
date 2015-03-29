@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150329001846) do
 
   create_table "active_admin_comments", force: true do |t|
@@ -59,9 +58,10 @@ ActiveRecord::Schema.define(version: 20150329001846) do
     t.integer  "status",              limit: 255
     t.integer  "numero_confirmation"
     t.integer  "total"
-    t.string   "adresse"
+    t.integer  "address_id"
   end
 
+  add_index "commandes", ["address_id"], name: "index_commandes_on_address_id"
   add_index "commandes", ["restaurant_id"], name: "index_commandes_on_restaurant_id"
 
   create_table "comptes", force: true do |t|

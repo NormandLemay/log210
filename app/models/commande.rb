@@ -32,9 +32,10 @@ class Commande < ActiveRecord::Base
 
   def init_valeur
     self.date ||= DateTime.parse(Time.now.to_s).strftime('%d/%m/%Y')
-    self.heure ||= DateTime.parse(Time.now.to_s).strftime('%H:%M')
+    self.heure ||= DateTime.parse(Time.now.to_s).strftime("%I:%M")
     self.numero_confirmation ||= rand(1...50_000)
     self.total = 0
+
   end
 
   def calcul_total

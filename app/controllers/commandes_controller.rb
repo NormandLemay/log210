@@ -16,6 +16,7 @@ class CommandesController < ApplicationController
       @compte_client = Client.find(session[:client_id])
     end
     @commande = Commande.find(params[:id])
+	  byebug
   end
 
   def edit
@@ -24,6 +25,13 @@ class CommandesController < ApplicationController
     end
     @commande = Commande.find(params[:id])
   end
+
+  def passer_etape_suivante
+    @commande = Commande.find_by_id(params[:id])
+    @commande.passer_etape_suivante
+    redirect_to restaurateur_preparer_commande_path
+  end
+
 
   def create
     @commande = Commande.new(commande_params)
@@ -35,8 +43,17 @@ class CommandesController < ApplicationController
     end
       @commande.save
       @commande.a_preparer!
+      #redirect_to commande_completer_commande_path(@commande.id)
       redirect_to commande_path(@commande.id)
   end
+
+  def completer_commande
+    if session[:client_id].present?
+      @compte_client = Client.find(session[:client_id])
+    end
+    @commande = Commande.find(params[:id])
+  end
+
 
   def index
     @commandes = Commande.all

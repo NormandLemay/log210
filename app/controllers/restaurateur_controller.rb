@@ -12,7 +12,6 @@ class RestaurateurController < ActionController::Base
   def passer_etape_suivante
     @commande = Commande.find_by_id(params[:id])
     @commande.passer_etape_suivante
-
     redirect_to restaurateur_preparer_commande_path
   end
 

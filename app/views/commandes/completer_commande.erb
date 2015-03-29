@@ -1,0 +1,43 @@
+<%= form_for(@client) do |f| %>
+    <% if @client.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+          <ul>
+            <% @client.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.fields_for :address do |builder| %>
+        <p>
+          <%= builder.label :rue, :class => "labelClient" %><br />
+          <%= builder.text_field :rue %><br />
+        </p>
+        <p>
+          <%= builder.label :no_civic, :class => "labelClient" %><br />
+          <%= builder.text_field :no_civic %><br />
+        </p>
+        <p>
+          <%= builder.label :ville, :class => "labelClient" %><br />
+          <%= builder.text_field :ville %><br />
+        </p>
+        <p>
+          <%= builder.label :code_postal, :class => "labelClient" %><br />
+          <%= builder.text_field :code_postal %><br />
+        </p>
+        <p>
+          <%= builder.label :province, :class => "labelClient" %><br />
+          <%= builder.text_field :province %><br />
+        </p>
+        <p>
+          <%= builder.label :pays, :class => "labelClient" %><br />
+          <%= builder.text_field :pays %><br />
+        </p>
+    <% end %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

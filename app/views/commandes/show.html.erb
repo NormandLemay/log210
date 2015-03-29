@@ -7,12 +7,17 @@
 
 <p>
   <strong>Heure de la commande:</strong>
-  <%= @commande.heure %>
+  <%= DateTime.parse(@commande.heure.to_s).strftime("%H:%M")%>
 </p>
 
 <p>
   <strong>Date de la commande:</strong>
   <%= @commande.date %>
+</p>
+
+<p>
+  <strong>Adresse par defaut de la commande:</strong>
+  <%= Address.find(@commande.address_id) %>
 </p>
 
 <p>
