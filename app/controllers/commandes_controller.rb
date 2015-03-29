@@ -44,9 +44,18 @@ class CommandesController < ApplicationController
     #params.delete :action
     #params.delete :controller
    # puts "TEST PARAM APRÈS DELETE ",params
-    @adresse = Address.create!(params)
-    @compte_client.address.create(params)
-    @commande.address_id = @adresse.id
+
+    adresse = Address.new(no_civic: params[:no_civic],
+                          rue: params[:rue],
+                          code_postal: params[:code_postal],
+                          ville: params[:ville],
+                          province: params[:province],
+                          pays: params[:pays])
+    adresse.save
+
+    #addresses.id: INSERT INTO "addresses" ("code_postal", "created_at", "id", "no_civic", "pays", "province", "rue", "updated_at", "ville") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    @compte_client.address << adresse
+    @commande.address_id = adresse.id
     render action: 'show', id: @commande.id
   end
 
