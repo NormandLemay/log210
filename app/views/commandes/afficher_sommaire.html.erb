@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Numéro de confirmation:</strong>
+  <%= @commande.numero_confirmation %>
+</p>
+
+<% @commande.ligne_commandes.each do |lc| %>
+    <% @plat = Plat.find(lc.plat_id)%>
+    <p>plat name: <%= @plat.description_plats.first.nom %></p>
+    <p>Description du plat: <%= @plat.description_plats.first.description %></p>
+    <p>Quantité: <%= lc.quantite %></p>
+    <p>Prix: <%= @plat.description_plats.first.prix %></p>
+<%end%>
+
+<p>
+  <strong>Total de la facture:</strong>
+  <%= @commande.total %>
+</p>
+
+<p>
+  <strong>Nom du client:</strong>
+  <%= @compte_client.try(:prenom) %>  <%= @compte_client.try(:nom) %>
+</p>
+
+<p>
+  <strong>Heure de la commande:</strong>
+  <%= DateTime.parse(@commande.heure.to_s).strftime("%H:%M")%>
+</p>
+
+<p>
+  <strong>Date de la commande:</strong>
+  <%= @commande.date %>
+</p>
+
+<p>
+  <strong>Adresse:</strong>
+  <%#= faire afficher la liste des adresses du client dans une liste avec cette variable @addresses
+  ensuite avoir un option dans le select qui soit nouvelle adresse
+  lorsque ce choix est fait tu affiches le formulaire ci-dessous %>
+</p>
+          <form action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+            tous les champs de addresse sauf le client_id: <input type="text" name="rue"><br/>
+            bla bla bla: <input type="text" name="code postal"><br/>
+            <input type="submit" value="Complèter">
+          </form>
+
+
+
