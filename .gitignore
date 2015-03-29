@@ -20,3 +20,4 @@ gemfile.lock
 /.idea
 /.idea/workspace.xml
 .idea/
+\.idea
