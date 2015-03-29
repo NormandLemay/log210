@@ -1,0 +1,65 @@
+<div id="container-accueil">
+  <div class="shell">
+    <% @restaurants.each do |restaurant| %>
+        <div class="box-accueil" id="box<%= restaurant.id %>">
+          <div class="box-head-accueil">
+            <h1 class="accueil"><b><%= restaurant.nom %></b></h1>
+          </div>
+          <% @commande = Commande.new %>
+          <% @commande.ligne_commandes.build %>
+          <%= form_for @commande do |f| %>
+              <%= f.hidden_field :restaurant_id, :value => restaurant.id %>
+              <table class="tableAccueil" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <% restaurant.menus.each do |menu| %>
+                    <tr>
+                      <th class="cellMenu">Menu: <%= menu.nom %> </th>
+                      <th class="cellMenu">Sélection</th>
+                    </tr>
+                    <% menu.plats.each do |plat| %>
+                        <%= f.fields_for :ligne_commandes do |lc| %>
+                            <tr>
+                              <%= lc.hidden_field :plat_id, :value => plat.id %>
+                              <td class="cellTableAccueil">
+                                <h3><b>Nom du plat: </b><%= plat.description_plats.first.nom %></h3>
+
+                                <h3><b>Prix du plat: </b> <%= plat.description_plats.first.prix %> $</h3>
+                              <td class="cellTableAccueil">
+                                <h3><b>Quantité: </b>
+                                  <%= lc.select :quantite, [0, 1, 2, 3, 4, 5], {}, :onchange => 'checkSubmit()' %>
+                                </h3>
+                              </td>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+              </table>
+              <div class="info">
+                 <%= f.label :date, "Date de livraison:"%>
+                 <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
+                 <%= f.label :heure, "Heure de livraison:"%>
+                 <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+              </div>
+              <div class="actions">
+                <%= f.submit :id => 'commande'%>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    function checkSubmit() {
+        var noQTE = true;
+        ($("[id$=_quantite]").each( function() {
+            if (($(this).val()) != 0) {
+                noQTE = false;
+            }
+        }));
+            if(noQTE == true) {
+                $("#commande").attr("disabled", true);
+            } else{
+                $("#commande").attr("disabled", false);
+            }
+    }
+</script>

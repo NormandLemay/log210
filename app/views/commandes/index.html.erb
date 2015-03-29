@@ -1,0 +1,23 @@
+<h1>Listing commandes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commandes.each do |commande| %>
+      <tr>
+        <td><%= link_to 'Show', commande %></td>
+        <td><%= link_to 'Edit', edit_commande_path(commande) %></td>
+        <td><%= link_to 'Destroy', commande, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Commande', root_path %>

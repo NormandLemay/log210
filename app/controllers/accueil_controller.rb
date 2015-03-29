@@ -2,10 +2,11 @@ class AccueilController < ApplicationController
   include AccueilHelper
 
   def index
-    @restaurant = Restaurant.joins(:menus).distinct
+    @restaurants = Restaurant.joins(:menus).distinct
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
     end
+
   end
 
   def deconnexion

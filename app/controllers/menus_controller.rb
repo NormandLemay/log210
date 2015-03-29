@@ -5,7 +5,6 @@ class MenusController < RestaurateurController
     session[:restaurant_id] = params[:restaurant_id]
     @menu = @restaurant.menus.build
     @plat = @menu.plats.build
-    @plat.description_plats.build
   end
 
   def edit

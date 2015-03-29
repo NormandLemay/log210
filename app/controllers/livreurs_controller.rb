@@ -5,7 +5,6 @@ class LivreursController < InheritedResources::Base
   def new
     @livreur = Livreur.new
     @livreur.build_compte
-
   end
 
   def create
@@ -13,7 +12,6 @@ class LivreursController < InheritedResources::Base
     @livreur = Livreur.new(livreur_params)
     if @livreur.save
       flash[:notice] = 'Compte livreur créer avec succès'
-      #session[:livreur_id] = @livreur.id
       redirect_to livreurs_path
     else
       render :action => 'new'

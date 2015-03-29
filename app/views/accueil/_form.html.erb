@@ -1,0 +1,45 @@
+<%= form_for @commande do |c| %>
+    <div id="container-accueil">
+      <div class="shell">
+        <% @restaurants.each do |restaurant| %>
+            <div class="box-accueil" id="box<%=restaurant.id%>">
+              <div class="box-head-accueil">
+                <h2 class="accueil"><%= restaurant.nom %></h2>
+              </div>
+              <div class="table">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <% restaurant.menus.each do |menu| %>
+                      <tr>
+                        <th><%= menu.nom %> </th>
+                        <th>Sélection</th>
+                      </tr>
+                      <% menu.plats.each do |plat| %>
+                          <% plat.description_plats.each do |plat_description| %>
+                              <tr>
+                                <td><h3><b>Nom du plat: </b><%= plat_description.nom %></h3>
+                                <h3><b>Prix du plat: </b> <%= plat_description.prix %></td>
+                                <td>
+                                  <select id="<%=plat.id%>" onChange=updateListeCommande(value,"<%=plat.id%>")>
+                                     <%=ajoutDropDown%>
+                                  </select>
+                                </td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </table>
+                <div class="actions">
+                  <%= c.hidden_field :date, :value => DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %>
+                  <%= c.hidden_field :heure, :value =>  DateTime.parse(Time.now.to_s).strftime("%H:%M") %>
+                  <%= c.hidden_field :status, :value => "A preparer" %>
+                  <%= c.hidden_field :numero_confirmation, :value => rand(1...50000) %>
+                  <%= c.submit %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    </div>
+<% end %>
+

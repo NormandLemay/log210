@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
-# Ignore le fucking gemfile.lock et les .idea
+# Ignore le gemfile.lock et les .idea
 gemfile.lock
 /.idea
+/.idea/workspace.xml

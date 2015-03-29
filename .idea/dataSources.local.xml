@@ -2,8 +2,6 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Rails log210: development" uuid="f7e4deab-edc8-4b4e-a44f-dd1ef8458ac5" />
-    <data-source name="Rails log210: test" uuid="a901aa8e-f35d-46aa-b991-737a772e82a3">
-      <first-sync>true</first-sync>
-    </data-source>
+    <data-source name="Rails log210: test" uuid="a901aa8e-f35d-46aa-b991-737a772e82a3" />
   </component>
 </project>
