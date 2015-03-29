@@ -1,9 +1,14 @@
 class LivreurController < ApplicationController
   @commande = Commande.new
   @compte_livreur
+  @commandesPretes = []
 def index
 
   @commandes = Commande.all
+  @commandes.each do |commande|
+    @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
+  end
+
 
   if session[:livreur_id].present?
     @compte_livreur = Livreur.find(session[:livreur_id])

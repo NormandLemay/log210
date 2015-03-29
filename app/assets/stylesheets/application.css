@@ -17,3 +17,14 @@
 div{
     background-color: #000000;
 }
+
+.myDiv{
+    background-color: #ffffff;
+    background: none;
+    border: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+.myDiv.content{
+    all: initial;
+}

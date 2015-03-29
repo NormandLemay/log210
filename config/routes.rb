@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'livreur/accept'
   get 'restaurateur/preparer_commande'
   get 'livreur/show'
+  put 'restaurateur/passer_etape_suivante'
+
   get 'restaurateur/gerer_livreur'
   post '/restaurateur/deconnexion' => 'restaurateur#deconnexion'
 
@@ -20,7 +22,9 @@ Rails.application.routes.draw do
   post '/accueil/deconnexion' => 'accueil#deconnexion'
   post '/accueil/connexion' => 'accueil#connexion'
   post '/accueil/connexion' => 'accueil#connexion'
+
   resources :clients
+
   resources :menus
 
   devise_for :entrepreneurs, ActiveAdmin::Devise.config

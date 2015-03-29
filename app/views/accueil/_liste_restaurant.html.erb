@@ -37,7 +37,13 @@
                  <%= f.label :date, "Date de livraison:"%>
                  <%= f.text_field :date, :value =>  DateTime.parse(Time.now.to_s).strftime("%d/%m/%Y") %><br />
                  <%= f.label :heure, "Heure de livraison:"%>
-                 <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%H:%M") %><br />
+                 <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%I:%M") %><br />
+                 <%= f.hidden_field :address_id, :value =>@compte_client.address.first.id if @compte_client.present? %>
+                <h3>
+                 <% if @compte_client.present? %>
+                  Adresse de livraison:<%= collection_select(:post, :address, @compte_client.address, :id, :adresse_complete,  {prompt: "Selectionner une adresse"} )%>
+                <% end %>
+                </h3>
               </div>
               <div class="actions">
                 <%= f.submit :id => 'commande'%>

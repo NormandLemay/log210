@@ -2,17 +2,22 @@
 
 <p>
   <strong>Nom du client:</strong>
-  <%= @compte_client.prenom %>  <%= @compte_client.nom %>
+  <%= @compte_client.try(:prenom) %>  <%= @compte_client.try(:nom) %>
 </p>
 
 <p>
   <strong>Heure de la commande:</strong>
-  <%= @commande.heure %>
+  <%= DateTime.parse(@commande.heure.to_s).strftime("%H:%M")%>
 </p>
 
 <p>
   <strong>Date de la commande:</strong>
   <%= @commande.date %>
+</p>
+
+<p>
+  <strong>Adresse par defaut de la commande:</strong>
+  <%= @commande.address.adresse_complete %>
 </p>
 
 <p>

@@ -6,6 +6,8 @@ class ClientsController < InheritedResources::Base
     @client.address.build
   end
 
+
+
   def update
     @client = Client.find(params[:id])
     @client.update_attributes(client_params)

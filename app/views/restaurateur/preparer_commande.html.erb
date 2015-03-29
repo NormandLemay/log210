@@ -1,2 +1,55 @@
-<h1>Restaurateur#preparer_commande</h1>
-<p>Find me in app/views/restaurateur/preparer_commande.html.erb</p>
+<!-- Container -->
+<div id="container">
+  <div class="shell">
+
+    <!-- Small Nav -->
+    <div class="small-nav">
+      <a href=<%= restaurateur_index_path %>>Dashboard</a>
+    </div>
+    <!-- End Small Nav -->
+    <br />
+    <!-- Main -->
+    <div id="main">
+      <div class="cl">&nbsp;</div>
+
+      <!-- Content -->
+      <div id="content">
+
+        <!-- Box -->
+        <% @restaurants.each do |restaurant| %>
+          <div class="box">
+            <!-- Box Head -->
+            <div class="box-head">
+              <h2 class="left"><%= restaurant.nom %></h2>
+            </div>
+            <!-- End Box Head -->
+
+            <!-- Table -->
+            <div class="table">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <th>Numéro de confirmation</th>
+                  <th class="ac">Status</th>
+                </tr>
+                <% restaurant.commandes.order(:status).each_with_index do |commande, idx| %>
+                  <tr class="<%= 'odd' if idx.modulo(2) == 0 %>">
+                    <td><h3><%= commande.numero_confirmation %></h3></td>
+                    <td class="ac"><%= commande.status %></td>
+                    <td><%= link_to 'Passer étape suivante', restaurateur_passer_etape_suivante_path(id: commande.id), method: :put, class: "ico edit" %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+            <!-- Table -->
+          </div>
+        <% end %>
+        </div>
+        <!-- End Box -->
+      </div>
+      <!-- End Content -->
+      <div class="cl">&nbsp;</div>
+    </div>
+    <!-- Main -->
+  </div>
+</div>
+<!-- End Container -->

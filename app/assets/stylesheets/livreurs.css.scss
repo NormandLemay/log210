@@ -19,6 +19,15 @@
 .myTable td:nth-child(2n+1){
   background: #d5d5d5;
 }
+.myTable td:nth-child(3n+1){
+  width: 25%;
+}
+.myTable td:nth-child(2){
+  width: 35%;
+}
+.myTable td:nth-child(3){
+  width: 20%;
+}
 .myTable{
   line-height: 160%;
   border-style: solid;
