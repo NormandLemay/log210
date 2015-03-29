@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :ligne_commandes
 
   resources :commandes
-  get '/commande/index'
+  get 'commandes/index'
+  get 'commandes/completer_commande'
 
   resources :livreurs
   get 'livreur/index'

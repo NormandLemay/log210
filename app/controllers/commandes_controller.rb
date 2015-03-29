@@ -41,15 +41,17 @@ class CommandesController < ApplicationController
     end
       @commande.save
       @commande.a_preparer!
-      #redirect_to commande_completer_commande_path(@commande.id)
+      completer_commande(@commande.id)
       redirect_to commande_path(@commande.id)
+
   end
 
-  def completer_commande
+  def completer_commande(id)
     if session[:client_id].present?
       @compte_client = Client.find(session[:client_id])
     end
-    @commande = Commande.find(params[:id])
+    @commande = Commande.find(id)
+    redirect_to :action => :completer_commande, :id => @commande
   end
 
   def index
