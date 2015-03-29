@@ -36,15 +36,13 @@ class CommandesController < ApplicationController
 
   def completer_commande
     @commande = Commande.find_by_id(params[:id])
-    #ici si tu fait afficher les params avec debugger
-   #tu pourras plus facilement faire ton create
-   #adresse = Address.create!(params)
-     #ensuite tu fais @commande.address_id = adresse.id
-    puts "TEST PARAM AVANT DELETE ",params
-    #params.delete :action
-    #params.delete :controller
-   # puts "TEST PARAM APRÈS DELETE ",params
 
+
+    if(params[:rue].nil?)
+      @commande.address_id = params[:id_add]
+      render action: 'show', id: @commande.id
+
+   else
     adresse = Address.new(no_civic: params[:no_civic],
                           rue: params[:rue],
                           code_postal: params[:code_postal],
@@ -53,11 +51,14 @@ class CommandesController < ApplicationController
                           pays: params[:pays])
     adresse.save
 
-    #addresses.id: INSERT INTO "addresses" ("code_postal", "created_at", "id", "no_civic", "pays", "province", "rue", "updated_at", "ville") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     @compte_client.address << adresse
     @commande.address_id = adresse.id
     render action: 'show', id: @commande.id
+      end
+
   end
+
+
 
   def index
     @commandes = Commande.all

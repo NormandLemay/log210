@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
-
 <div id="info_commande">
 <% @commande.ligne_commandes.each do |lc| %>
     <% @plat = Plat.find(lc.plat_id)%>
@@ -38,25 +36,26 @@
 
 <p>
   <strong>Adresse de livraison:</strong>
-      <%= collection_select(:post, :address, @addresses.all, :id, :adresse_complete,  {prompt: "Selectionner une adresse"}, {include_blank: "Other"} )%>
-      <button type="button" onclick="showForm()">Ajouter adresse</button>
-  <%#= faire afficher la liste des adresses du client dans une liste avec cette variable @addresses
-  ensuite avoir un option dans le select qui soit nouvelle adresse
-  lorsque ce choix est fait tu affiches le formulaire ci-dessous %>
+    <form id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+        <%=collection_select(:post, :address_id, @addresses.all, :id, :adresse_complete, {:include_blank => "Please select"}, html_options = {:onchange => "updateForm(this)"})%>
+        <p id="id_hidden">id: <input type="text" name="id_add" id="id_add" ></p>
+        <button type="button" onclick="showForm()">Ajouter adresse</button>
+    <input id="bouton_confirmation_id" type="submit" value="Confirmation">
+    </form>
 </p>
-          <form id="form_address_id" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
-            Numéro civique:  <input type="text" name="no_civic"><br/>
-            Rue: <input type="text" name="rue"><br/>
-            Code Postal: <input type="text" name="code_postal"><br/>
-            Ville: <input type="text" name="ville"><br/>
-            Province: <input type="text" name="province"><br/>
-            Pays: <input type="text" name="pays"><br/>
-            <input id="bouton_confirmation_id" type="submit" value="Confirmation">
-          </form>
+
+  <form id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+     <%=getAddressForm()%>
+  </form>
 </div>
 
 <script>
     function showForm() {
-            $("#form_address_id").toggle();
+            $("#div_address_id").toggle();
+    }
+</script>
+<script>
+    function updateForm(id) {
+        $("#id_add").val(id.value);
     }
 </script>
