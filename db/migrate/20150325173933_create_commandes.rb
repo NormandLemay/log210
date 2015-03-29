@@ -3,6 +3,8 @@ class CreateCommandes < ActiveRecord::Migration
     create_table :commandes do |t|
 
       t.timestamps
+
     end
+
   end
 end

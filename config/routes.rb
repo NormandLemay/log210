@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resources :livreurs
   get 'livreur/index'
   get 'restaurateur/index'
-
+  get 'livreur/accept'
   get 'restaurateur/preparer_commande'
-
+  get 'livreur/show'
   get 'restaurateur/gerer_livreur'
   post '/restaurateur/deconnexion' => 'restaurateur#deconnexion'
 

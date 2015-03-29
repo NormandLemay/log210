@@ -38,6 +38,7 @@ class CommandesController < ApplicationController
   end
 
   def show
+    @compte_client = Client.find_by_id(params[:id])
     @commande = Commande.find_by_id(params[:id])
   end
 
