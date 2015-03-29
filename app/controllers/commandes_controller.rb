@@ -4,24 +4,11 @@ class CommandesController < ApplicationController
 
   def new
     @commande = Commande.new
-    if session[:client_id].present?
-      @compte_client = Client.find(session[:client_id])
-    end
     @ligne_commande = @commande.ligne_commandes.build
     redirect_to root_path
   end
 
-  def show
-    if session[:client_id].present?
-      @compte_client = Client.find(session[:client_id])
-    end
-    @commande = Commande.find(params[:id])
-  end
-
   def edit
-    if session[:client_id].present?
-      @compte_client = Client.find(session[:client_id])
-    end
     @commande = Commande.find(params[:id])
   end
 
@@ -33,34 +20,32 @@ class CommandesController < ApplicationController
 
   def create
     @commande = Commande.new(commande_params)
-    if session[:client_id].present?
-      @compte_client = Client.find(session[:client_id])
-    end
     @commande.ligne_commandes.each do |lc|
       lc.delete unless lc.valid?
     end
-      @commande.save
-      @commande.a_preparer!
-      completer_commande(@commande.id)
-      redirect_to commande_path(@commande.id)
-
+    @commande.save
+    @commande.a_preparer!
+    redirect_to commande_afficher_sommaire_path(:id=> @commande.id)
   end
 
-  def completer_commande(id)
-    if session[:client_id].present?
-      @compte_client = Client.find(session[:client_id])
-    end
-    @commande = Commande.find(id)
-    redirect_to :action => :completer_commande, :id => @commande
+  def afficher_sommaire
+    @commande = Commande.find_by_id(params[:id])
+    @addresses = @compte_client.address
+    @adresse_nouvelle = Address.new
+  end
+
+  def completer_commande
+    @commande = Commande.find_by_id(params[:id])
+    #ici si tu fait afficher les params avec debugger
+    #tu pourras plus facilement faire ton create
+    #adresse = Address.create!(params)
+    #ensuite tu fais @commande.address_id = adresse.id
+    render action: 'show', id: @commande.id
   end
 
   def index
     @commandes = Commande.all
     @addresses = @compte_client.all
-  end
-
-  def show
-    @commande = Commande.find_by_id(params[:id])
   end
 
   private
