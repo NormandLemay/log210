@@ -16,7 +16,6 @@ class CommandesController < ApplicationController
       @compte_client = Client.find(session[:client_id])
     end
     @commande = Commande.find(params[:id])
-	  byebug
   end
 
   def edit
@@ -31,7 +30,6 @@ class CommandesController < ApplicationController
     @commande.passer_etape_suivante
     redirect_to restaurateur_preparer_commande_path
   end
-
 
   def create
     @commande = Commande.new(commande_params)
@@ -54,10 +52,9 @@ class CommandesController < ApplicationController
     @commande = Commande.find(params[:id])
   end
 
-
   def index
     @commandes = Commande.all
-    @addresses = Address.find(@compte_client.id)
+    @addresses = @compte_client.all
   end
 
   def show
@@ -72,8 +69,8 @@ class CommandesController < ApplicationController
         :numero_confirmation,
         :total,
         :restaurant_id,
-        ligne_commandes_attributes:[:quantite, :plat_id],
-        address_attributes: [:id, :rue, :no_civic, :pays, :province, :ville, :code_postal])
+        :address_id,
+        ligne_commandes_attributes:[:quantite, :plat_id])
     end
 end
 

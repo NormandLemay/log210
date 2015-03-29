@@ -40,7 +40,9 @@
                  <%= f.text_field :heure, :value => DateTime.parse(Time.now.to_s).strftime("%I:%M") %><br />
                  <%= f.hidden_field :address_id, :value =>@compte_client.address.first.id %>
                 <h3>
-                 <% if @compte_client %> Adresse de livraison:<%= collection_select(:post, :address, @compte_client.address.all, :id, :adresseComplete,  {:prompt => "Selectionner une adresse"} )%><% end %>
+                 <% if @compte_client %>
+                  Adresse de livraison:<%= collection_select(:post, :address, @compte_client.address, :id, :adresse_complete,  {prompt: "Selectionner une adresse"} )%>
+                <% end %>
                 </h3>
               </div>
               <div class="actions">

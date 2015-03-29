@@ -1,20 +1,16 @@
 class Commande < ActiveRecord::Base
   has_many :ligne_commandes
-  has_many :address
+  belongs_to :address
   belongs_to :restaurant
   before_validation :init_valeur
   after_validation :calcul_total
-
 
   enum status: [:a_preparer, :en_preparation,
                 :prete, :en_livraison, :livrer]
 
   accepts_nested_attributes_for :ligne_commandes, allow_destroy: true
 
-
-  accepts_nested_attributes_for :address, :allow_destroy =>true
-  private
-
+  accepts_nested_attributes_for :address, allow_destroy: true
 
   def passer_etape_suivante
     if self.a_preparer?
@@ -44,12 +40,6 @@ class Commande < ActiveRecord::Base
         self.total += lc.calculer_total
       end
     end
-
-  end
-
-
-  def ajoutNouvelleAdresse()
-    flash[:warning] = 'Aucun restaurateur sélectionné'
   end
 
 end
