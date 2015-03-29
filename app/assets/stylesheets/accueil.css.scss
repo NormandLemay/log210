@@ -140,7 +140,6 @@ h3.titremenu {
   color: #949745;
   font-family: verdana;
   font-size: 25px;
-  //width: 600px;
   margin-top: 6px;
   margin-left: 100px;
   font-weight: bold;
@@ -215,4 +214,35 @@ body{
   margin-top: 3.3%;
   background-color: #2E2F30;
 
+
+}
+
+#info_livraison{
+  background-color: #2E2F30;
+  margin-left: 41%;
+  padding : 5px;
+
+}
+
+#info_commande{
+  background-color: #2E2F30;
+  width: 40%;
+  float: left;
+  border: solid #000000 1px;
+  padding-bottom : 21px;
+  padding-left : 5px;
+
+}
+
+#form_address_id{
+  background-color: #2E2F30;
+  padding-bottom: 7px;
+}
+#div_address_id{
+  background-color: #2E2F30;
+  display: none;
+}
+
+#id_hidden{
+  display: none;
 }

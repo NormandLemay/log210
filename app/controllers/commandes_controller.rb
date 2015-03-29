@@ -36,12 +36,29 @@ class CommandesController < ApplicationController
 
   def completer_commande
     @commande = Commande.find_by_id(params[:id])
-    #ici si tu fait afficher les params avec debugger
-    #tu pourras plus facilement faire ton create
-    #adresse = Address.create!(params)
-    #ensuite tu fais @commande.address_id = adresse.id
+
+
+    if(params[:rue].nil?)
+      @commande.address_id = params[:id_add]
+      render action: 'show', id: @commande.id
+
+   else
+    adresse = Address.new(no_civic: params[:no_civic],
+                          rue: params[:rue],
+                          code_postal: params[:code_postal],
+                          ville: params[:ville],
+                          province: params[:province],
+                          pays: params[:pays])
+    adresse.save
+
+    @compte_client.address << adresse
+    @commande.address_id = adresse.id
     render action: 'show', id: @commande.id
+      end
+
   end
+
+
 
   def index
     @commandes = Commande.all
@@ -57,8 +74,7 @@ class CommandesController < ApplicationController
         :total,
         :restaurant_id,
         :address_id,
+        address_attributes:[:no_civic, :rue, :code_postal, :ville, :province, :pays, :id],
         ligne_commandes_attributes:[:quantite, :plat_id])
     end
 end
-
-
