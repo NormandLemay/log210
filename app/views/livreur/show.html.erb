@@ -20,23 +20,29 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
               center: latlng
           }
           map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-          var addressClient = '<%=@commande.address.no_civic.to_s() + ","+@commande.address.rue+"," + @commande.address.ville+"," + @commande.address.province+","+@commande.address.pays %>'
-          var addressLivreur = '<%= @compte_livreur.coordonnee %>'
-          var addressRestaurant = '<%= @commande.restaurant.address.no_civic.to_s()+ ","+@commande.restaurant.address.rue+"," + @commande.restaurant.address.ville+"," + @commande.restaurant.address.province+","+@commande.restaurant.address.pays %>'
-          //Ajouter addresseRestaurant dans code addresse
-          codeAddress(addressLivreur,addressRestaurant,addressClient );
-          // Modifier pour que livreur->restaurant->client
-          calcRoute(addressLivreur,addressRestaurant);
-          calcRoute(addressRestaurant,addressClient );
+          var addressClient = '<%= formater_adresse(@commande)%>';
+          var addressLivreur = '<%= @compte_livreur.coordonnee %>';
 
+          var addressRestaurant = '<%= formater_adresse(@resto)%>';
+            window.alert(addressRestaurant);
+
+          codeAddress(addressLivreur,addressRestaurant,addressClient );
+          calcRoute(addressLivreur,addressRestaurant,addressClient);
           directionsDisplay.setMap(map);
 
+
       }
-      function calcRoute(depart,arrive) {
+      function calcRoute(depart,arret, arrive) {
           var start = depart;
+          var stops = [];
+          stops.push({
+              location:arret,
+              stopover:true
+          });
           var end = arrive;
           var request = {
               origin:start,
+              waypoints: stops,
               destination:end,
               travelMode: google.maps.TravelMode.DRIVING
           };
@@ -125,7 +131,7 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 </p>
 <p>
   <strong>Addresse du restaurant (B):</strong>
-  <!-- ajouter ladresse du restaurant-->
+
 </p>
 <p>
   <strong>Addresse du client (C):</strong>
