@@ -14,24 +14,13 @@ class LivreurController < ApplicationController
     @livreur = Livreur.find(session[:livreur_id])
     @commandes = Commande.all
     @livreur.coordonnee = params[:coordonnee]
-    @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
+    @commandesPretes = Commande.prete
     if session[:livreur_id].present?
       @compte_livreur = Livreur.find(session[:livreur_id])
-
-      @commandes.each do |commande|
-        @commandesLivraison = @commandes.select {|commande| commande.status == 'en_livraison'}
-      end
-      @commandes.each do |commande|
-        @mesCommandes = @commandesLivraison.select {|commande| commande.livreur_id == @compte_livreur.id}
-      end
-
-      @commandes.each do |commande|
-        @commandesLivrer = @commandes.select {|commande| commande.status == 'livrer'}
-      end
-      @commandes.each do |commande|
-        @mesCommandesCompletees = @commandesLivrer.select {|commande| commande.livreur_id == @compte_livreur.id}
-      end
-
+      @commandesLivraison = Commande.en_livraison
+      @mesCommandes = Commande.en_livraison.where(livreur_id: @compte_livreur.id)
+      @commandesLivrer = Commande.livrer
+      @mesCommandesCompletees = Commande.livrer.where(livreur_id: @compte_livreur.id)
     end
   end
 

@@ -1,0 +1,78 @@
+<html>
+<head><script
+src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+</script>
+  <script
+  src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+  </script>
+  <script>
+
+      var geocoder;
+      var map;
+      function initialize() {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(-34.397, 150.644);
+          var mapOptions = {
+              zoom: 15,
+              center: latlng
+          }
+          map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+          codeAddress();
+      }
+
+      function codeAddress() {
+          var address = '<%= formater_adresse(@commande)%>'
+
+
+          geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                      map: map,
+                      position: results[0].geometry.location
+                  });
+              } else {
+                  alert("Geocode was not successful for the following reason: " + status);
+              }
+          });
+      }
+
+  </script>
+</head>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Heure de la commande:</strong>
+  <%= @commande.heure %>
+</p>
+
+<p>
+  <strong>Date de la commande:</strong>
+  <%= @commande.date %>
+</p>
+
+
+<% @commande.ligne_commandes.each do |lc| %>
+    <% @plat = Plat.find(lc.plat_id)%>
+    <p><strong>plat name:</strong> <%= @plat.description_plats.first.nom %></p>
+    <p><strong>Description du plat:</strong> <%= @plat.description_plats.first.description %></p>
+    <p><strong>Quantité:</strong> <%= lc.quantite %></p>
+    <p><strong>Prix:</strong> <%= @plat.description_plats.first.prix %></p>
+<%end%>
+
+<p>
+  <strong>Total de la facture:</strong>
+  <%= @commande.total %>
+</p>
+<body onload="initialize()">
+<div id="map-canvas" style="width: 500px; height: 450px;"></div>
+</body>
+<br/>
+<br/>
+<%= link_to 'Accepte la commande', livreur_accept_path(id: @commande.id), method: :get if @commande.prete? %>
+<%= link_to 'Terminer la livraison', livreur_termine_path(id: @commande.id), method: :get if @commande.en_livraison? %>
+<br/>
+<br/>
+
+</html>
