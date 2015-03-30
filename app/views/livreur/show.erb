@@ -17,11 +17,15 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
               center: latlng
           }
           map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-          codeAddress();
+          var address = '<%=@commande.address.rue+"," + @commande.address.ville+"," + @commande.address.province+","+@commande.address.pays %>'
+          var addressLivreur = '<%= @compte_livreur.coordonnee %>'
+          window.alert(addressLivreur);
+          codeAddress(address);
+          codeAddress(addressLivreur);
       }
 
-      function codeAddress() {
-          var address = '<%=@commande.address.rue+"," + @commande.address.ville+"," + @commande.address.province+","+@commande.address.pays %>'
+      function codeAddress(address) {
+
 
 
           geocoder.geocode( { 'address': address}, function(results, status) {
