@@ -14,7 +14,7 @@ module RestaurateurHelper
    def sortable_heading( label, field, make_link )
      up_params = { :order => field, :direction => 'asc' }
      down_params = { :order => field, :direction => 'desc' }
-     link_to( '^', make_link.call( up_params ) ) + label + link_to( 'v', make_link.call( down_params ) )
+     link_to( '▲', make_link.call( up_params ) ) + label + link_to( '▼', make_link.call( down_params ) )
 
    end
 
