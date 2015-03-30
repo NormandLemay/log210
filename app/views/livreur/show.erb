@@ -13,7 +13,7 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
           geocoder = new google.maps.Geocoder();
           var latlng = new google.maps.LatLng(-34.397, 150.644);
           var mapOptions = {
-              zoom: 8,
+              zoom: 15,
               center: latlng
           }
           map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -41,11 +41,6 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 </head>
 
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>test</strong>
-
-</p>
 
 <p>
   <strong>Heure de la commande:</strong>
@@ -76,5 +71,8 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 <br/>
 <br/>
 
+<%= link_to 'Accepte la commande', livreur_accept_path(@commande.id), method: :get%>
+<br/>
+<br/>
 
 </html>

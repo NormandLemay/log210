@@ -18,6 +18,34 @@
       </table>
   <% end %>
   </tbody>
+  <h1>Liste des commandes que je dois livrer</h1>
+  <tbody>
+  <% @mesCommandes.each do |commande|  %>
+      <table class="myTable">
+        <tr>
+          <td>Restaurant: <%= commande.restaurant.nom %></td>
+          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Status: <%= commande.status %></td>
+          <td>Total de la commande: <%= commande.total %></td>
+          <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
+        </tr>
+      </table>
+  <% end %>
+  </tbody>
+  <h1>Liste des commandes que j'ai deja livrer</h1>
+  <tbody>
+  <% @mesCommandesCompletees.each do |commande|  %>
+      <table class="myTable">
+        <tr>
+          <td>Restaurant: <%= commande.restaurant.nom %></td>
+          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Status: <%= commande.status %></td>
+          <td>Total de la commande: <%= commande.total %></td>
+          <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
+        </tr>
+      </table>
+  <% end %>
+  </tbody>
 
 
 </div>

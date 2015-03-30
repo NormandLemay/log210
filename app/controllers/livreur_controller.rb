@@ -7,22 +7,43 @@ class LivreurController < ApplicationController
 
 
 def index
+  if session[:livreur_id].present?
+    @compte_livreur = Livreur.find(session[:livreur_id])
+  end
   @livreur = Livreur.find_by(session[:livreur_id])
   @commandes = Commande.all
+
   @commandes.each do |commande|
     @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
   end
 
 
-  if session[:livreur_id].present?
-    @compte_livreur = Livreur.find(session[:livreur_id])
+  @commandes.each do |commande|
+    @commandesLivraison = @commandes.select {|commande| commande.status == 'en_livraison'}
   end
+  @commandes.each do |commande|
+    @mesCommandes = @commandesLivraison.select {|commande| commande.livreur_id == @compte_livreur.id}
+  end
+
+  @commandes.each do |commande|
+    @commandesLivrer = @commandes.select {|commande| commande.status == 'livrer'}
+  end
+  @commandes.each do |commande|
+    @mesCommandesCompletees = @commandesLivrer.select {|commande| commande.livreur_id == @compte_livreur.id}
+  end
+
+
+
+
 end
 
 
 def accept
-
-  redirect_to livreur_accept_path
+  if session[:livreur_id].present?
+    @compte_livreur = Livreur.find(session[:livreur_id])
+  end
+  @commande = Commande.find_by_id(params[:id])
+  redirect_to livreur_index_path
 end
 
   def show
@@ -30,6 +51,7 @@ end
       @compte_livreur = Livreur.find(session[:livreur_id])
     end
     @commande = Commande.find_by_id(params[:id])
+    @commande.passer_etape_suivante
 
 
   end

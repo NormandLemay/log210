@@ -22,7 +22,7 @@ class LivreursController < InheritedResources::Base
 
     def livreur_params
       params.require(:livreur).permit(:nom, :prenom,
-                                      compte_attributes:[:id, :courriel, :mot_de_passe])
+                                      compte_attributes:[:id, :courriel, :mot_de_passe],)
 
     end
 end
