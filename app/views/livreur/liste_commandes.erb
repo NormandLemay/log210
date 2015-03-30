@@ -1,0 +1,22 @@
+
+<div class="carnet">
+  <h1>Liste des commandes actuellement disponibles</h1>
+  <script>
+
+  </script>
+
+  <tbody>
+  <p>Where are you?:<%=@livreur.coordonnee%></p>
+  <% @commandesPretes.each do |commande|  %>
+      <table class="myTable">
+        <tr>
+          <td>Restaurant: <%= commande.restaurant.nom %></td>
+          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Status: <%= commande.status %></td>
+          <td>Total de la commande: <%= commande.total %></td>
+          <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
+        </tr>
+      </table>
+  <% end %>
+  </tbody>
+</div>

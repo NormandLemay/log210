@@ -3,7 +3,7 @@ class CreateLivreurs < ActiveRecord::Migration
     create_table :livreurs do |t|
       t.string :nom
       t.string :prenom
-
+      t.string :coordonnee
       t.timestamps
     end
     add_column :comptes, :livreur_id, :integer

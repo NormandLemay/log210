@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329001846) do
+ActiveRecord::Schema.define(version: 20150330011010) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20150329001846) do
     t.integer  "status",              limit: 255
     t.integer  "numero_confirmation"
     t.integer  "total"
-    t.integer  "livreur_id"
     t.integer  "address_id"
   end
 
@@ -66,13 +65,13 @@ ActiveRecord::Schema.define(version: 20150329001846) do
   add_index "commandes", ["restaurant_id"], name: "index_commandes_on_restaurant_id"
 
   create_table "comptes", force: true do |t|
-    t.text    "courriel"
-    t.text    "mot_de_passe"
-    t.integer "client_id"
-    t.text    "created_at"
-    t.text    "updated_at"
-    t.integer "restaurateur_id"
-    t.text    "livreur_id"
+    t.string   "courriel"
+    t.string   "mot_de_passe"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurateur_id"
+    t.integer  "livreur_id"
   end
 
   create_table "description_plats", force: true do |t|
@@ -120,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150329001846) do
     t.string   "prenom"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "coordonnee"
   end
 
   create_table "menus", force: true do |t|

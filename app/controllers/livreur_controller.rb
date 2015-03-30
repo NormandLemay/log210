@@ -15,8 +15,20 @@ def index
 
   @commandes.each do |commande|
     @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
+  def index
+    @livreur = Livreur.find(session[:livreur_id])
+    if session[:livreur_id].present?
+      @compte_livreur = Livreur.find(session[:livreur_id])
+    end
   end
 
+  def liste_commandes
+    @livreur = Livreur.find(session[:livreur_id])
+    @commandes = Commande.all
+    @livreur.coordonnee = params[:coordonnee]
+    @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
+  if session[:livreur_id].present?
+    @compte_livreur = Livreur.find(session[:livreur_id])
 
   @commandes.each do |commande|
     @commandesLivraison = @commandes.select {|commande| commande.status == 'en_livraison'}
@@ -46,6 +58,7 @@ def accept
   redirect_to livreur_index_path
 end
 
+
   def show
     if session[:livreur_id].present?
       @compte_livreur = Livreur.find(session[:livreur_id])
@@ -56,6 +69,7 @@ end
 
   end
   private
-
-
+  def commande_params
+    params.require(:livreur).permit(:coordonnee, :nom, :prenom)
+  end
 end
