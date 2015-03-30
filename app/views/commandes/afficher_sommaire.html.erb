@@ -35,7 +35,7 @@
 </p>
 
   <strong>Adresse de livraison:</strong>
-   </br> <form id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+   </br> <form class="address1_form" id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
         <%=collection_select(:post, :address_id, @addresses.all, :id, :adresse_complete, {:include_blank => false}, html_options = {:onchange => "updateForm(this)"})%>
       <input id="bouton_confirmation_id2" type="submit" value="Confirmation">
       <p id="id_hidden">id: <input type="text" name="id_add" id="id_add" ></p>
@@ -43,7 +43,7 @@
 
     </form>
  <button type="button" onclick="showForm()">Ajouter adresse</button>
-  <form id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
+  <form  class="address2_form" id="form_address" action=<%= commande_completer_commande_path(:id => @commande.id) %> method="post">
      <%=getAddressForm()%>
   </form>
 </div>
