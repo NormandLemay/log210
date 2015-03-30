@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   get 'livreur/show'
   put 'restaurateur/passer_etape_suivante'
 
+  post 'livreur/liste_commandes' => 'livreur#liste_commandes'
+  get 'livreur/index' => 'livreur#index'
+
+
   get 'restaurateur/gerer_livreur'
   post '/restaurateur/deconnexion' => 'restaurateur#deconnexion'
 
