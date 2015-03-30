@@ -42,6 +42,7 @@ class LivreurController < ApplicationController
   end
 
   private
+
   def commande_params
     params.require(:livreur).permit(:coordonnee, :nom, :prenom)
   end
