@@ -4,7 +4,7 @@ ActiveAdmin.register Restaurant do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :nom, :restaurateur_id
+  permit_params :nom, :restaurateur_id, address_attributes:[:no_civic, :rue, :code_postal, :ville, :province, :pays]
   #
   # or
   #
@@ -27,7 +27,7 @@ ActiveAdmin.register Restaurant do
     link_to 'Créer un menu', create_menu_admin_restaurant_path
   end
 
- # @params :restaurant_id
+  # @params :restaurant_id
   member_action :create_menu, :title => 'Créer un menu', :method => [:get, :post] do
     @restaurant = Restaurant.find(params[:id])
   end
@@ -58,11 +58,19 @@ ActiveAdmin.register Restaurant do
 
   form do |f|
     f.inputs 'Restaurant' do
-     f.input :nom
-     f.input :restaurateur_id, :as => :select, :collection => Restaurateur.all.map{|res| [res.nom, res.id]}
+      f.input :nom
+      f.input :restaurateur_id, :as => :select, :collection => Restaurateur.all.map{|res| [res.nom, res.id]}
+       f.inputs do
+         f.has_many :address do |t|
+           t.input :no_civic
+           t.input :rue
+           t.input :code_postal
+           t.input :ville
+           t.input :province
+           t.input :pays
+         end
+       end
     end
     f.actions
   end
-
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330010453) do
+ActiveRecord::Schema.define(version: 20150330035347) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(version: 20150330010453) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "livreur_id"
     t.integer  "restaurant_id"
   end
+
+  add_index "addresses", ["restaurant_id"], name: "index_addresses_on_restaurant_id"
 
   create_table "clients", force: true do |t|
     t.string   "nom"
@@ -60,21 +61,22 @@ ActiveRecord::Schema.define(version: 20150330010453) do
     t.integer  "status",              limit: 255
     t.integer  "numero_confirmation"
     t.integer  "total"
-    t.integer  "livreur_id"
     t.integer  "address_id"
+    t.integer  "livreur_id"
   end
 
   add_index "commandes", ["address_id"], name: "index_commandes_on_address_id"
+  add_index "commandes", ["livreur_id"], name: "index_commandes_on_livreur_id"
   add_index "commandes", ["restaurant_id"], name: "index_commandes_on_restaurant_id"
 
   create_table "comptes", force: true do |t|
-    t.text    "courriel"
-    t.text    "mot_de_passe"
-    t.integer "client_id"
-    t.text    "created_at"
-    t.text    "updated_at"
-    t.integer "restaurateur_id"
-    t.text    "livreur_id"
+    t.string   "courriel"
+    t.string   "mot_de_passe"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "restaurateur_id"
+    t.integer  "livreur_id"
   end
 
   create_table "description_plats", force: true do |t|
