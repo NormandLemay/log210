@@ -32,26 +32,26 @@
                   <th><%= sortable_heading( "Numéro de confirmation", :numero_confirmation, link_proc ) %></th>
                   <th class="ac"><%= sortable_heading( "Status", :status, link_proc ) %></th>
                   <th class="ac"><%= sortable_heading( "Total", :total, link_proc ) %></th>
-                  <th class="ac"><%= sortable_heading( "Heure", :created_at, link_proc ) %></th>
+                  <th class="ac"><%= sortable_heading( "Heure", :heure, link_proc ) %></th>
                   <th></th>
                 </tr>
 
                 <% def order_by
-                return {} if params[:order].blank?
-                direction = params[:direction] || "asc"
-                order = params[:order]
-                "#{order} #{direction}"
-                end
+                     return {} if params[:order].blank?
+                     direction = params[:direction] || "asc"
+                     order = params[:order]
+                     "#{order} #{direction}"
+                   end
                 %>
 
-               <% restaurant.commandes.order( order_by ).each_with_index do |commande, idx| %>
-                  <tr class="<%= 'odd' if idx.modulo(2) == 0 %>">
-                    <td><h3><%= commande.numero_confirmation %></h3></td>
-                    <td class="ac"><%= commande.status %></td>
-                    <td class="ac"><%= commande.total  %>$</td>
-                    <td class="ac"><% a= "#{commande.created_at}"  %><%= a[10,10] %> </td>
-                    <td><%= link_to 'Passer étape suivante', restaurateur_passer_etape_suivante_path(id: commande.id), method: :put, class: "ico edit" %></td>
-                  </tr>
+                <% restaurant.commandes.order( order_by ).each_with_index do |commande, idx| %>
+                    <tr class="<%= 'odd' if idx.modulo(2) == 0 %>">
+                      <td><h3><%= commande.numero_confirmation %></h3></td>
+                      <td class="ac"><%= commande.status %></td>
+                      <td class="ac"><%= commande.total  %>$</td>
+                      <td class="ac"><%=  DateTime.parse(commande.created_at.to_s).strftime("%m-%d") + " " + DateTime.parse(commande.heure.to_s).strftime("%H:%M")%> </td>
+                      <td><%= link_to 'Passer étape suivante', restaurateur_passer_etape_suivante_path(id: commande.id), method: :put, class: "ico edit" %></td>
+                    </tr>
                 <% end %>
               </table>
             </div>
