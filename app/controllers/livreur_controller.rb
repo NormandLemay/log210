@@ -13,15 +13,18 @@ class LivreurController < ApplicationController
     if session[:livreur_id].present?
       @compte_livreur = Livreur.find(session[:livreur_id])
     end
+
   end
 
   def liste_commandes
+
     @livreur = Livreur.find(session[:livreur_id])
+    @compte_livreur = @livreur
     @commandes = Commande.all
     @livreur.coordonnee = params[:coordonnee]
+    @livreur.save
     @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
-  if session[:livreur_id].present?
-    @compte_livreur = Livreur.find(session[:livreur_id])
+
 
   @commandes.each do |commande|
     @commandesLivraison = @commandes.select {|commande| commande.status == 'en_livraison'}
@@ -40,7 +43,7 @@ class LivreurController < ApplicationController
 
 
 end
-end
+
 
 
 def accept
