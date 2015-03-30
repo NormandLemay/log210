@@ -10,7 +10,7 @@
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
-          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Heure désirée: <%= DateTime.parse(commande.heure.to_s).strftime("%H:%M")%></td>
           <td>Status: <%= commande.status %></td>
           <td>Total de la commande: <%= commande.total %></td>
           <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
@@ -24,7 +24,7 @@
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
-          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Heure désirée: <%= DateTime.parse(commande.heure.to_s).strftime("%H:%M")%></td>
           <td>Status: <%= commande.status %></td>
           <td>Total de la commande: <%= commande.total %></td>
           <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
@@ -38,9 +38,9 @@
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
-          <td>Heure désirée: <%= commande.heure %></td>
+          <td>Heure désirée: <%= DateTime.parse(commande.heure.to_s).strftime("%H:%M")%></td>
           <td>Status: <%= commande.status %></td>
-          <td>Total de la commande: <%= commande.total %></td>
+          <td>Total de la commande: <%= DateTime.parse(commande.heure.to_s).strftime("%H:%M")%></td>
           <td><%= link_to 'Show', livreur_show_path(id: commande.id), method: :get %></td>
         </tr>
       </table>
