@@ -6,15 +6,8 @@ class LivreurController < ApplicationController
   end
 
 
-def index
-  if session[:livreur_id].present?
-    @compte_livreur = Livreur.find(session[:livreur_id])
-  end
-  @livreur = Livreur.find_by(session[:livreur_id])
-  @commandes = Commande.all
 
-  @commandes.each do |commande|
-    @commandesPretes = @commandes.select {|commande| commande.status == 'prete'}
+
   def index
     @livreur = Livreur.find(session[:livreur_id])
     if session[:livreur_id].present?
@@ -46,7 +39,7 @@ def index
 
 
 
-
+end
 end
 
 
@@ -55,8 +48,19 @@ def accept
     @compte_livreur = Livreur.find(session[:livreur_id])
   end
   @commande = Commande.find_by_id(params[:id])
+  @commande.passer_etape_suivante
+  @commande.livreur_id = @compte_livreur.id
   redirect_to livreur_index_path
 end
+
+  def termine
+    if session[:livreur_id].present?
+      @compte_livreur = Livreur.find(session[:livreur_id])
+    end
+    @commande = Commande.find_by_id(params[:id])
+    @commande.passer_etape_suivante
+    redirect_to livreur_index_path
+  end
 
 
   def show
@@ -64,7 +68,7 @@ end
       @compte_livreur = Livreur.find(session[:livreur_id])
     end
     @commande = Commande.find_by_id(params[:id])
-    @commande.passer_etape_suivante
+
 
 
   end
@@ -72,4 +76,5 @@ end
   def commande_params
     params.require(:livreur).permit(:coordonnee, :nom, :prenom)
   end
+
 end

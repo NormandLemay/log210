@@ -22,7 +22,7 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 
       function codeAddress() {
           var address = '<%=@commande.address.rue+"," + @commande.address.ville+"," + @commande.address.province+","+@commande.address.pays %>'
-            window.alert(address);
+
 
           geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
@@ -71,7 +71,8 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 <br/>
 <br/>
 
-<%= link_to 'Accepte la commande', livreur_accept_path(@commande.id), method: :get%>
+<%= link_to 'Accepte la commande', livreur_accept_path(@commande.id), method: :get if @commande.status=='prete'%>
+<%= link_to 'Terminer la livraison', livreur_termine_path(@commande.id), method: :get if @commande.status=='en_livraison'%>
 <br/>
 <br/>
 

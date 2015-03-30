@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'restaurateur/preparer_commande'
   get 'livreur/show'
   put 'restaurateur/passer_etape_suivante'
-
+  get 'livreur/termine'
   post 'livreur/liste_commandes' => 'livreur#liste_commandes'
   get 'livreur/index' => 'livreur#index'
 
