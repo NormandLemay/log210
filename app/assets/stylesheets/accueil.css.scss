@@ -251,9 +251,21 @@ body{
 }
 
 
-#form_adress{
-  display: inline;
+form.address1_form{
+  background-color: #2E2F30;
+  display: inline-table;
+  padding-top:5px;
+  padding-left:5px;
+  padding-right:5px;
+  padding-bottom:5px;
+}
 
+form.address2_form{
+  background-color: #2E2F30;
+  padding-top:5px;
+  padding-left:5px;
+  padding-right:5px;
+  padding-bottom:5px;
 }
 #post_address_id{
   margin-top:5px;
