@@ -8,5 +8,14 @@ module RestaurateurHelper
       render(association.to_s.singularize + '_fields', f: builder)
     end
     link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub('\n', '')})
-  end
+   end
+
+  #Ce script est pour trier les commandes d'un restaurateur
+   def sortable_heading( label, field, make_link )
+     up_params = { :order => field, :direction => 'asc' }
+     down_params = { :order => field, :direction => 'desc' }
+     link_to( '▲', make_link.call( up_params ) ) + label + link_to( '▼', make_link.call( down_params ) )
+
+   end
+
 end
