@@ -6,7 +6,6 @@ class AddChamps < ActiveRecord::Migration
     add_column :commandes, :date, :date
     add_column :commandes, :heure, :time
     add_column :commandes, :status, :string
-    add_column :commandes , :livreur_id, :integer
     add_column :commandes, :numero_confirmation, :integer
     add_column :commandes, :total, :integer
     add_column :ligne_commandes, :quantite, :integer
