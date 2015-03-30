@@ -37,11 +37,10 @@ class CommandesController < ApplicationController
   def completer_commande
     @commande = Commande.find_by_id(params[:id])
 
-
     if(params[:rue].nil?)
       @commande.address_id = params[:id_add]
       render action: 'show', id: @commande.id
-
+      @commande.save
    else
     adresse = Address.new(no_civic: params[:no_civic],
                           rue: params[:rue],
@@ -53,12 +52,12 @@ class CommandesController < ApplicationController
 
     @compte_client.address << adresse
     @commande.address_id = adresse.id
+    @compte_client.save
+    @commande.save
     render action: 'show', id: @commande.id
       end
 
   end
-
-
 
   def index
     @commandes = Commande.all

@@ -97,7 +97,7 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 
 <p>
   <strong>Heure de la commande:</strong>
-  <%= @commande.heure %>
+  <%= DateTime.parse(@commande.heure.to_s).strftime("%H:%M")%>
 </p>
 
 <p>
