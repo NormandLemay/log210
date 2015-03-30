@@ -23,7 +23,6 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
       function codeAddress() {
           var address = '<%= formater_adresse(@commande)%>'
 
-
           geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                   map.setCenter(results[0].geometry.location);
