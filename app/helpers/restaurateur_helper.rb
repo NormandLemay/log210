@@ -19,6 +19,7 @@ module RestaurateurHelper
 
    def formater_adresse(commande)
     adresse = commande.address
+
     "#{adresse.rue},#{adresse.ville},#{adresse.province} ,#{adresse.pays}"
   end
 end
