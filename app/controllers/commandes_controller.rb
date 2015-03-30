@@ -40,7 +40,6 @@ class CommandesController < ApplicationController
     if(params[:rue].nil?)
       @commande.address_id = params[:id_add]
       render action: 'show', id: @commande.id
-      @compte_client.save
       @commande.save
    else
     adresse = Address.new(no_civic: params[:no_civic],

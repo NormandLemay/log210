@@ -1,12 +1,15 @@
+    <!-- Message Error -->
+    <% if flash[:error].present? %>
+    <div class="msg msg-error">
+      <p><strong><%= flash[:error] %></strong></p>
+    </div>
+    <% end %>
 
 <div class="carnet">
   <h1>Liste des commandes actuellement disponibles</h1>
-  <script>
-
-  </script>
 
   <tbody>
-  <% @commandesPretes.each do |commande|  %>
+  <% @commandes_pretes.each do |commande|  %>
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
@@ -20,7 +23,7 @@
   </tbody>
   <h1>Liste des commandes que je dois livrer</h1>
   <tbody>
-  <% @mesCommandes.each do |commande|  %>
+  <% @mes_commandes.each do |commande|  %>
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
@@ -34,7 +37,7 @@
   </tbody>
   <h1>Liste des commandes que j'ai deja livrer</h1>
   <tbody>
-  <% @mesCommandesCompletees.each do |commande|  %>
+  <% @mes_commandes_completees.each do |commande|  %>
       <table class="myTable">
         <tr>
           <td>Restaurant: <%= commande.restaurant.nom %></td>
