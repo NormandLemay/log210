@@ -39,6 +39,7 @@ class LivreurController < ApplicationController
 
   def show
     @commande = Commande.find_by_id(params[:id])
+    @adr_restaurant = @commande.restaurant.address.first
   end
 
   private

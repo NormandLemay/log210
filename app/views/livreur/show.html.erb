@@ -1,5 +1,6 @@
 
-<head><script
+<head>
+<script
 src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
 </script>
 
@@ -20,9 +21,9 @@ src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
               center: latlng
           }
           map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-          var addressClient = '<%=@commande.address.no_civic.to_s() + ","+@commande.address.rue+"," + @commande.address.ville+"," + @commande.address.province+","+@commande.address.pays %>'
-          var addressLivreur = '<%= @compte_livreur.coordonnee %>'
-          var addressRestaurant = '<%= @commande.restaurant.address.no_civic.to_s()+ ","+@commande.restaurant.address.rue+"," + @commande.restaurant.address.ville+"," + @commande.restaurant.address.province+","+@commande.restaurant.address.pays %>'
+          var addressClient = '<%= formater_adresse(@commande.address) %>'
+          var addressLivreur = 'pub 100 génies<%#= @compte_livreur.coordonnee %>'
+          var addressRestaurant = '<%= formater_adresse(@adr_restaurant) %>'
           //Ajouter addresseRestaurant dans code addresse
           codeAddress(addressLivreur,addressRestaurant,addressClient );
           // Modifier pour que livreur->restaurant->client

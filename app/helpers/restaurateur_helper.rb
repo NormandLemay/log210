@@ -17,10 +17,9 @@ module RestaurateurHelper
     link_to( '^', make_link.call( up_params ) ) + label + link_to( 'v', make_link.call( down_params ) )
   end
 
-  def formater_adresse(commande)
-    adresse = commande.address
+  def formater_adresse(adresse)
     if adresse
-      "#{adresse.rue},#{adresse.ville},#{adresse.province} ,#{adresse.pays}"
+      "#{adresse.no_civic} #{adresse.rue},#{adresse.ville},#{adresse.province} ,#{adresse.pays}"
     else
       ""
     end
